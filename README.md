@@ -1,15 +1,22 @@
 # 🏡 CozyNest
 
-CozyNest is a full-stack accommodation listing web application where users can explore, create, edit, and manage property listings with secure authentication, image uploads, reviews, and interactive maps.
+CozyNest is a full-stack web application that allows users to discover, create, and manage accommodation listings. It provides secure user authentication, image uploads, reviews, and an intuitive interface for exploring travel destinations.
+
+---
 
 ## 🚀 Features
 
-- User Authentication
-- Create, Edit & Delete Listings
-- Cloudinary Image Upload
-- Reviews & Ratings
+- User Registration & Login
+- Secure Authentication using Passport.js
+- Create, Edit & Delete Property Listings
+- Upload Images with Cloudinary
+- Add & Delete Reviews
 - Interactive Maps
+- Flash Messages & Form Validation
 - MongoDB Atlas Database
+- Clean and User-Friendly Interface
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -22,35 +29,81 @@ CozyNest is a full-stack accommodation listing web application where users can e
 - Passport.js
 - Cloudinary
 - Mapbox
+- JavaScript
+- HTML5
+- CSS3
+
+---
+
+## 📂 Project Structure
+
+```
+CozyNest
+│── controllers/
+│── models/
+│── routes/
+│── views/
+│── public/
+│── utils/
+│── app.js
+│── package.json
+```
+
+---
 
 ## ⚙️ Installation
+
+### Clone the repository
 
 ```bash
 git clone https://github.com/avinashkale14/CozyNest.git
 cd CozyNest
-npm install
-node app.js
 ```
 
-Create a `.env` file:
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Create a `.env` file
 
 ```env
 DB_URL=your_mongodb_connection_string
 SECRET=your_secret_key
-CLOUD_NAME=your_cloudinary_name
+CLOUD_NAME=your_cloud_name
 CLOUD_API_KEY=your_cloudinary_api_key
 CLOUD_API_SECRET=your_cloudinary_api_secret
 MAP_TOKEN=your_mapbox_token
 ```
 
-Open in browser:
+### Start the application
+
+```bash
+node app.js
+```
+
+Open your browser and visit:
 
 ```
 http://localhost:8080/listings
 ```
 
-## 👨‍💻 Developer
+---
+
+## 📌 Future Improvements
+
+- Responsive Design for Mobile Devices
+- Search & Filter Enhancements
+- Booking System
+- Wishlist Feature
+- Payment Integration
+- Admin Dashboard
+
+---
+
+## 👨‍💻 Author
 
 **Avinash Kale**
 
-⭐ If you like this project, consider giving it a star.
+GitHub: https://github.com/avinashkale14
