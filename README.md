@@ -3,6 +3,10 @@
 A modern full-stack accommodation listing web application built with Node.js, Express.js, MongoDB, and EJS. CozyNest allows users to explore destinations, create and manage property listings, upload images, and share reviews through a secure authentication system.
 
 ---
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 ## 📸 Preview
 
