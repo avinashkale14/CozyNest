@@ -1,0 +1,176 @@
+<% layout("/layouts/boilerplate") %>
+
+    <style>
+        #filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter {
+            text-align: center;
+            margin-right: 2rem;
+            margin-top: 2rem;
+            opacity: 0.7;
+        }
+
+        .filter:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .filter p {
+            font-size: 0.8rem;
+        }
+
+        .tax-info {
+            display: none;
+        }
+
+        .tax-toggle {
+            border: 1px solid black;
+            border-radius: 1rem;
+            height: 3.25rem;
+            padding: 1rem;
+            margin-left: 2rem;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+<div class="hero-section">
+    <h1>Find your perfect getaway</h1>
+    <p>Discover unique places to stay and experiences to try around the world</p>
+</div>
+
+<div class="container">
+<div class="category-wrapper">
+
+<div class="category-bar" id="categoryBar">
+
+  <!-- ✅ ALL FIRST -->
+  <div class="category active" data-category="all">
+    <i class="fa-solid fa-border-all"></i>
+    <span>All</span>
+  </div>
+
+  <div class="category" data-category="trending">
+    <i class="fa-solid fa-fire"></i>
+    <span>Trending</span>
+  </div>
+
+  <div class="category" data-category="rooms">
+    <i class="fa-solid fa-bed"></i>
+    <span>Rooms</span>
+  </div>
+
+  <div class="category" data-category="iconic-cities">
+    <i class="fa-solid fa-city"></i>
+    <span>Iconic cities</span>
+  </div>
+
+  <div class="category" data-category="mountains">
+    <i class="fa-solid fa-mountain"></i>
+    <span>Mountains</span>
+  </div>
+
+  <div class="category" data-category="castles">
+    <i class="fa-solid fa-chess-rook"></i>
+    <span>Castles</span>
+  </div>
+
+  <div class="category" data-category="amazing-pools">
+    <i class="fa-solid fa-person-swimming"></i>
+    <span>Amazing Pools</span>
+  </div>
+
+  <div class="category" data-category="camping">
+    <i class="fa-solid fa-campground"></i>
+    <span>Camping</span>
+  </div>
+
+  <div class="category" data-category="farms">
+    <i class="fa-solid fa-tractor"></i>
+    <span>Farms</span>
+  </div>
+
+  <div class="category" data-category="domes">
+    <i class="fa-solid fa-igloo"></i>
+    <span>Domes</span>
+  </div>
+
+   <div class="category" data-category="boats">
+     <i class="fa-solid fa-ship"></i>
+    <span>Boats</span>
+  </div>
+
+</div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4 g-2">
+  <% for (let listing of allListings){ %>
+
+    <div class="col mb-0 listing-col">
+      <a href="/listings/<%= listing._id %>" style="text-decoration:none; color:black;">
+        
+        <div class="card col listing-card" data-category="<%= listing.category %>">
+
+          <img src="<%= listing.image.url %>" 
+               class="card-img-top rounded-4"
+               style="height:250px; object-fit:cover;">
+
+          <div class="card-body">
+
+            <h6 class="fw-bold"><%= listing.title %></h6>
+
+            <p class="text-muted mb-1" style="font-size:14px;">
+              <%= listing.location %>
+            </p>
+
+            <p class="fw-semibold">
+              ₹ <%= listing.price.toLocaleString("en-IN") %> 
+              <span class="text-muted">/ night</span>
+            </p>
+
+          </div>
+
+        </div>
+
+      </a>
+    </div>
+
+  <% } %>
+</div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const categories = document.querySelectorAll(".category");
+  const cards = document.querySelectorAll(".listing-card");
+
+  categories.forEach(cat => {
+    cat.addEventListener("click", () => {
+
+      document.querySelector(".active")?.classList.remove("active");
+      cat.classList.add("active");
+
+      const selected = cat.dataset.category;
+
+      cards.forEach(card => {
+        const parent = card.closest(".listing-col");
+        const cardCategory = card.dataset.category;
+
+        if (selected === "all" || cardCategory === selected) {
+          parent.style.display = "block";   // ✅ THIS FIX
+        } else {
+          parent.style.display = "none";
+        }
+      });
+
+    });
+  });
+
+});
+</script>

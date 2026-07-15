@@ -1,0 +1,64 @@
+<style>
+    .search-btn {
+        background-color: #fe424d;
+        color: white;
+        border-radius: 25px;
+        padding: 0 1rem 0 1rem;
+    }
+
+    .search-btn:hover {
+        background-color: #fe424d;
+        color: white;
+    }
+
+    .search-btn i {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
+    .search-inp {
+        border-radius: 25px;
+        padding: 0.5rem 3rem 0.5rem 3rem;
+        font-size: 1rem;
+    }
+
+    .logo-img {
+        height: 100px;
+        width: auto;
+    }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+
+        <!-- ✅ LOGO ADD KELAY -->
+        <a class="navbar-brand" href="/listings">
+            <img src="/images/cozynest.png" alt="Cozynest Logo" class="logo-img">
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
+                    <button class="btn search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>Search
+                    </button>
+                </form>
+            </div>
+
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/listings/new"><b>Host Your Place</b></a>
+
+                <% if(!currUser){ %>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                    <a href="/login" class="login-btn">Login</a>
+                <% } %>
+
+                <% if(currUser){ %>
+                    <a href="/logout" class="login-btn">Logout</a>
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+</nav>

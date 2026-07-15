@@ -1,0 +1,342 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* 🔥 Full page background */
+body {
+  background: linear-gradient(to right, #fcfcfc 0%, #fcfcfc 100%);
+}
+
+/* 🧱 Listings section wrapper */
+.container {
+  background: transparent;
+}
+
+/* 📦 Cards (white keep for contrast) */
+.listing-card {
+  background-color: #fcfcfc;
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ✨ Hover effect (premium feel) */
+.listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.container {
+    flex: 1;
+}
+
+/* navbar */
+.navbar-brand {
+    margin-left: 100px;  /* logo right la shift */
+}
+.navbar {
+    height: 5rem;
+    background-color: rgb(255, 255, 255);
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+.search-box {
+  flex: 1;
+  justify-content: center;
+}
+.search-inp {
+    width: 400px;  
+}
+
+form[role="search"] {
+    margin-left: 20px;
+}
+
+.search-inp {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+/* right section */
+.navbar .d-flex.gap-3 {
+  min-width: 300px;
+  justify-content: flex-end;
+}
+
+/* LOGIN (main gradient button) */
+.login-btn {
+  background: linear-gradient(135deg, #ff7eb3, #7b8cff);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* hover effect */
+.login-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* SIGNUP (light version) */
+.signup-btn {
+  background: #f1f3ff;
+  color: #667eea;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+  background: #e0e4ff;
+}
+
+/* footer */
+.footer {
+  background: linear-gradient(to right,#f7f4f5 0%, #f2f6fd 100%);
+  font-size: 14px;
+}
+
+.footer h6 {
+  margin-bottom: 15px;
+}
+
+.footer ul li {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.footer ul li:hover {
+  text-decoration: underline;
+}
+
+.social-icons i {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.social-icons i:hover {
+  color: #ff385c;
+}
+
+/* cards */
+.listing-card {
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400 !important;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/* card effect */
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: rgb(255, 255, 255);
+}
+
+/* new page */
+.add-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* edit page */
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* show page */
+.show-img {
+    height: 30vh;
+}
+
+.btns {
+    display: flex;
+}
+
+.show-card {
+    padding-left: 0;
+    padding-right: 0;
+}
+.listing-card {
+  transition: all 0.3s ease;
+  border-radius: 20px;
+}
+
+.listing-card:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+.card-img-top {
+  border-radius: 20px;
+}
+.card-body {
+  padding: 10px 5px;
+}
+/* 🚫 REMOVE hover only on show page */
+.show-card:hover {
+  transform: none !important;
+  cursor: default !important;
+}
+
+/* also stop animation */
+.show-card {
+  transition: none !important;
+}
+
+/* NAVBAR */
+.category-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* SCROLL BAR */
+.category-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px 40px; /* space for arrows */
+  scroll-behavior: smooth;
+}
+
+/* NOW scrollbar visible */
+.category-bar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.category-bar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* EACH BUTTON */
+.category {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* ICON */
+.category i {
+  font-size: 16px;
+}
+
+/* TEXT */
+.category span {
+  font-size: 14px;
+}
+
+/* HOVER */
+.category:hover {
+  border-color: black;
+}
+
+/* ACTIVE (All button) */
+.category.active {
+  background: #ff385c;
+  color: white;
+  border: none;
+}
+.listing-col {
+  display: block;
+}
+
+/* Hero */
+.hero-section {
+  text-align: center;
+  padding: 20px 20px;
+  background: linear-gradient(to right,#f7f4f5 0%, #f2f6fd 100%);
+}
+
+.hero-section h1 {
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  color: #6c757d;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* BOTTOM MARGIN */
+.row {
+  margin-bottom: 0 !important;
+}
+
+.listing-col {
+  margin-bottom: 0px !important; 
+}
+
+.card {
+  margin-bottom: 0 !important;
+}
+
+.search-btn {
+    background: linear-gradient(135deg, #f8748c);
+    color: white;
+    border-radius: 25px;
+    padding: 0 1rem;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    opacity: 0.9;
+}
+.back-btn {
+  display: inline-block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #ff385c;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+  color: #e03150;
+}
