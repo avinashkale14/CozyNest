@@ -2,6 +2,7 @@ const Listing = require("../models/listing.js");
 const Review = require("../models/review.js");
 
 module.exports.createReview = async (req, res) => {
+    console.log(req.body);
     let { id } = req.params;
     let listing = await Listing.findById(id);
     let newReview = new Review(req.body.review);

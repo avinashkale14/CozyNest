@@ -30,23 +30,69 @@ module.exports.isOwner = async (req, res, next) => {
 };
 
 module.exports.validateListing = (req, res, next) => {
+
     let { error } = listingSchema.validate(req.body);
+
     if (error) {
-        let errMsg = error.details.map((el) => el.message).join(",");
+
+        let errMsg = error.details[0].message;
+
+        if (errMsg.includes("listing.title")) {
+            errMsg = "Please enter a listing title.";
+        }
+
+        else if (errMsg.includes("listing.description")) {
+            errMsg = "Please enter a description.";
+        }
+
+        else if (
+            errMsg.includes("listing.price") &&
+            errMsg.includes("greater than or equal to 0")
+        ) {
+            errMsg = "Price cannot be negative.";
+        }
+
+        else if (errMsg.includes("listing.price")) {
+            errMsg = "Please enter a valid price.";
+        }
+
+        else if (errMsg.includes("listing.location")) {
+            errMsg = "Please enter a location.";
+        }
+
+        else if (errMsg.includes("listing.country")) {
+            errMsg = "Please enter a country.";
+        }
+
+        else if (errMsg.includes("listing.category")) {
+            errMsg = "Please select a category.";
+        }
+
         throw new ExpressError(400, errMsg);
-    } else {
-        next();
+
     }
+
+    next();
 };
 
 module.exports.validateReview = (req, res, next) => {
-    let { error } = reviewSchema.validate(req.body);
+    let { id } = req.params;
+
+    let { error } = reviewSchema.validate(req.body, {
+        abortEarly: false,
+    });
+
     if (error) {
-        let errMsg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(400, errMsg);
-    } else {
-        next();
-    }
+    let errMsg = error.details
+        .map((el) => el.message)
+        .join("<br>");
+
+    req.flash("error",errMsg);
+
+    return res.redirect(`/listings/${id}`);
+}
+
+    next();
 };
 
 module.exports.isReviewAuthor = async (req, res, next) => {

@@ -4,32 +4,27 @@ const mongoose = require("mongoose");
 const Listing = require("../models/listing");
 const initData = require("./data");
 
-const dbUrl = process.env.DB_URL; // ✅ correct variable
+const dbUrl = process.env.DB_URL;
 
 async function main() {
   await mongoose.connect(dbUrl);
+  console.log("DB Connected ✅");
 }
 
 main()
-  .then(() => {
-    console.log("DB Connected ✅");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  .then(initDB)
+  .catch(console.log);
 
-const initDB = async () => {
+async function initDB() {
   await Listing.deleteMany({});
 
-  // ⚠️ TEMP: no owner to avoid crash
-  const dataWithoutOwner = initData.data.map((obj) => ({
+  const data = initData.data.map((obj) => ({
     ...obj,
-    owner: null,
+    owner: "6a6eda3ebedfb9fbaea6e55f" // तुझा owner id
   }));
 
-  await Listing.insertMany(dataWithoutOwner);
+  await Listing.insertMany(data);
 
-  console.log("Data Inserted ✅");
-};
-
-initDB();
+  console.log("Database Initialized ✅");
+  mongoose.connection.close();
+}

@@ -1,8 +1,12 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <div class="col-8 offset-2">
-        <h1>Create A New Listing</h1>
+<div class="listing-form-container">
+    <div class="listing-form-card">
+        <h1>🏡 Create a New Listing</h1>
+
+        <p class="listing-subtitle">
+            Share your place with travelers around the world.
+        </p>
 
         <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
 
@@ -16,8 +20,8 @@
                     class="form-control"
                     required
                 >
-                <div class="valid-feedback">
-                    Title looks good!
+                <div class="invalid-feedback">
+                    Please enter a listing title.
                 </div>
             </div>
 
@@ -39,13 +43,17 @@
 
             <!-- Image -->
             <div class="mb-3">
-                <label for="image" class="form-label">Upload Listing Image</label>
+                <label for="image" class="form-label"> 🖼️ Upload Listing Image</label>
                 <input
                     type="file"
                     name="listing[image]"
                     class="form-control"
+                    accept="image/*"
                     required
                 >
+                <div class="invalid-feedback">
+                    Please upload a listing image.
+                </div>
             </div>
 
             <!-- Price & Location -->
@@ -54,14 +62,15 @@
                     <label for="price" class="form-label">Price</label>
                     <input
                         type="number"
-                        placeholder="1200"
+                        placeholder="Enter price"
                         name="listing[price]"
                         class="form-control"
+                        min="0"
                         required
                     >
 
                     <div class="invalid-feedback">
-                        Price should be valid.
+                        Please enter a valid price.
                     </div>
                 </div>
 
@@ -76,7 +85,7 @@
                     >
 
                     <div class="invalid-feedback">
-                        Location should be valid.
+                        Please enter a location.
                     </div>
                 </div>
             </div>
@@ -93,7 +102,7 @@
                 >
 
                 <div class="invalid-feedback">
-                    Country name should be valid.
+                    Please enter a country.
                 </div>
             </div>
 
@@ -125,12 +134,12 @@
             </div>
 
             <!-- Submit -->
-            <button class="btn btn-dark add-btn mt-3">
-                Create
+            <button class="create-btn mt-3">
+                + Create Listing
             </button>
 
-            <br><br>
+ </form>
 
-        </form>
     </div>
+
 </div>
