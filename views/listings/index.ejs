@@ -107,17 +107,16 @@
 </div>
 </div>
 
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4 g-2">
+<div class="row mt-4 g-4">
   <% for (let listing of allListings){ %>
 
-    <div class="col mb-0 listing-col">
+<div class="col-xl-4 col-lg-4 col-md-6 col-12 listing-col">
       <a href="/listings/<%= listing._id %>" style="text-decoration:none; color:black;">
         
-        <div class="card col listing-card" data-category="<%= listing.category %>">
+        <div class="card listing-card" data-category="<%= listing.category %>">
 
-          <img src="<%= listing.image.url %>" 
-               class="card-img-top rounded-4"
-               style="height:250px; object-fit:cover;">
+          <img src="<%= listing.image.url %>"
+               class="card-img-top rounded-4 listing-img">
 
           <div class="card-body">
 

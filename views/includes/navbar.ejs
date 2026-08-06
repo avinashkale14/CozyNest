@@ -1,14 +1,16 @@
 <style>
     .search-btn {
-        background-color: #fe424d;
+        background: #ff385c;
         color: white;
         border-radius: 25px;
-        padding: 0 1rem 0 1rem;
-    }
+        margin-left:10px;
+        padding:10px 20px;
+        white-space:nowrap;
+        }
 
     .search-btn:hover {
-        background-color: #fe424d;
-        color: white;
+        background:#e53945;
+        color:white;
     }
 
     .search-btn i {
@@ -16,49 +18,308 @@
         margin-right: 0.5rem;
     }
 
-    .search-inp {
-        border-radius: 25px;
-        padding: 0.5rem 3rem 0.5rem 3rem;
-        font-size: 1rem;
+    .search-inp:focus{
+    border-color:#fe424d;
+    box-shadow:0 0 0 3px rgba(254,66,77,.15);
     }
 
     .logo-img {
-        height: 100px;
+        height: 60px;
         width: auto;
     }
+
+    /* navbar */
+    .navbar-brand{
+    margin-left:0;
+    padding:0;
+    margin-right:18px;
+    display:flex;
+    align-items:center;
+    }
+
+    .container-fluid{
+    max-width:1320px;
+    margin:auto;
+    padding:0 24px;
+    }
+
+    .navbar {
+        height: 80px;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .nav-link{
+    color:#222;
+    font-weight:700;
+    transition:.3s;
+    font-size:1rem;
+    }
+
+    .nav-link:hover{
+        color:#fe424d;
+    }
+
+    .signup-btn,
+    .login-btn{
+        flex-shrink:0;
+    }
+
+    .search-inp{
+    width:390px;
+    max-width:100%;
+    border-radius:25px;
+    padding:10px 22px;
+    font-size:1rem;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .search-wrapper{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    }
+    
+    form[role="search"]{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    margin:0;
+    }
+
+    .right-nav{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    white-space:nowrap;
+    }
+
+    .nav-brand-text{
+        text-decoration:none;
+        color:#222;
+        font-size:1.2rem;
+        font-weight:700;
+        margin-left:12px;
+        margin-right:28px;
+        white-space:nowrap;
+    }
+
+    .nav-brand-text:hover{
+        color:#ff385c;
+    }
+
+    .mobile-menu-title{
+    display:none;
+    }
+
+    .brand-wrapper{
+    display:flex;
+    align-items:center;
+    }
+
+    .host-link{
+    font-weight:700;
+    }
+
+    .host-link:hover{
+        color:#ff385c;
+    }
+
+    .search-btn,
+    .signup-btn,
+    .login-btn,
+    .nav-link{
+        transition:.25s ease;
+    }
+    
+
+    @media (max-width:1199px){
+
+    .navbar{
+        height:auto;
+        padding:12px 0;
+    }
+
+    .container-fluid{
+        padding:0 16px;
+    }
+
+   .brand-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    }
+
+    .nav-brand-text{
+        display:none;
+    }
+
+    .mobile-title{
+        display:block;
+        margin-top:-6px;
+        margin-left:2px;
+        font-size:22px;
+        font-weight:700;
+        text-decoration:none;
+        color:#222;
+    }
+
+    .mobile-menu-title{
+    display:block;
+    margin-bottom:14px;
+    text-align:start;
+    }
+
+    .mobile-menu-title a{
+        text-decoration:none;
+        color:#222;
+        font-size:22px;
+        font-weight:700;
+    }
+
+    .mobile-menu-title a:hover{
+        color:#fe424d;
+    }
+
+    .logo-img{
+        height:58px;
+    }
+
+    .navbar-brand{
+        margin:0;
+        display:block;
+    }
+
+    .navbar-collapse{
+        margin-top:10px;
+    }
+
+    .search-wrapper{
+        width:100%;
+    }
+
+    form[role="search"]{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:8px;
+        margin-bottom:12px;
+    }
+
+    .search-inp{
+        width:100%;
+        max-width:none;
+        padding:10px 16px;
+    }
+
+    .search-btn{
+        margin-left:0;
+        padding:10px 18px;
+    }
+
+    .right-nav{
+        display:flex !important;
+        flex-direction:row !important;
+        justify-content:center;
+        align-items:center;
+        gap:16px;
+        margin-top:6px;
+        flex-wrap:nowrap;
+    }
+
+    .host-link,
+    .signup-btn,
+    .login-btn{
+        font-size:15px;
+        margin:0 !important;
+        white-space:nowrap;
+    }
+
+}
+    
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-xl bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
 
-        <!-- ✅ LOGO ADD KELAY -->
-        <a class="navbar-brand" href="/listings">
-            <img src="/images/cozynest.png" alt="Cozynest Logo" class="logo-img">
-        </a>
-        
+        <!-- Logo -->
+        <div class="brand-wrapper">
+
+            <a class="navbar-brand" href="/listings">
+                <img src="/images/cozynest.png"
+                    alt="Cozynest Logo"
+                    class="logo-img">
+            </a>
+
+            <!-- Desktop -->
+            <a href="/listings" class="nav-brand-text">
+                Explore Stays
+            </a>
+
+        </div>
+
+        <!-- Bootstrap Toggle -->
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ms-auto">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
-                    <button class="btn search-btn" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>Search
-                    </button>
-                </form>
+            
+            <div class="mobile-menu-title">
+                <a href="/listings">Explore Stays</a>
             </div>
 
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/listings/new"><b>Host Your Place</b></a>
+            <!-- Search -->
+            <div class="mx-auto search-wrapper">
+
+                <form class="d-flex" role="search">
+
+                    <input
+                        class="form-control me-2 search-inp"
+                        type="search"
+                        placeholder="Search destinations">
+
+                    <button class="btn search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Right -->
+            <div class="navbar-nav ms-auto align-items-center right-nav">
+
+                <a class="nav-link host-link" href="/listings/new">
+                    Host Your Place
+                </a>
 
                 <% if(!currUser){ %>
-                    <a href="/signup" class="signup-btn">Sign Up</a>
-                    <a href="/login" class="login-btn">Login</a>
+
+                    <a href="/signup" class="signup-btn">
+                        Sign Up
+                    </a>
+
+                    <a href="/login" class="login-btn">
+                        Login
+                    </a>
+
                 <% } %>
 
                 <% if(currUser){ %>
-                    <a href="/logout" class="login-btn">Logout</a>
+
+                    <a href="/logout" class="login-btn">
+                        Logout
+                    </a>
+
                 <% } %>
+
             </div>
 
         </div>
+
     </div>
 </nav>
