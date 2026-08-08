@@ -50,5 +50,4 @@ router.get(
     bookingsController.myBookings
 );
 
-
 module.exports = router;

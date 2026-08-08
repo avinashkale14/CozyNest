@@ -455,9 +455,6 @@ module.exports.cancelBooking = async (req, res) => {
 
             return res.redirect("/bookings");
         }
-
-
-
         // =================================================
         // SECURITY CHECK
         // =================================================
