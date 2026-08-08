@@ -1,0 +1,211 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<%
+    // ===============================
+    // BOOKING DATA
+    // ===============================
+
+    const checkIn = query.checkIn;
+    const checkOut = query.checkOut;
+
+    const numberOfGuests = Number(query.guests) || 1;
+
+
+    // ===============================
+    // CALCULATE NIGHTS
+    // ===============================
+
+    const startDate = new Date(checkIn + "T00:00:00");
+    const endDate = new Date(checkOut + "T00:00:00");
+
+    const numberOfNights = Math.ceil(
+        (endDate - startDate) / (1000 * 60 * 60 * 24)
+    );
+
+
+    // ===============================
+    // CALCULATE TOTAL
+    // ===============================
+
+    const totalPrice =
+        listing.price *
+        numberOfNights *
+        numberOfGuests;
+
+
+    // ===============================
+    // FORMAT DATE
+    // ===============================
+
+    const formatDate = (date) => {
+
+        return new Date(date + "T00:00:00")
+            .toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+    };
+%>
+
+
+<div class="booking-page">
+
+    <!-- PAGE HEADER -->
+    <div class="booking-header">
+        <h1>🏡 Confirm Your Booking</h1>
+
+        <p>
+            Review your trip details before confirming.
+        </p>
+    </div>
+
+
+    <!-- BOOKING CONTENT -->
+    <div class="booking-layout">
+
+        <!-- ================================= -->
+        <!-- LEFT : LISTING CARD -->
+        <!-- ================================= -->
+
+        <div class="booking-listing-card">
+
+            <img
+                src="<%= listing.image.url %>"
+                alt="<%= listing.title %>"
+                class="booking-image"
+            >
+
+            <div class="booking-info">
+
+                <h2>
+                    <%= listing.title %>
+                </h2>
+
+                <p>
+                    📍
+                    <%= listing.location %>,
+                    <%= listing.country %>
+                </p>
+
+                <h3>
+                    ₹ <%= listing.price.toLocaleString("en-IN") %>
+
+                    <span>
+                        / night
+                    </span>
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- RIGHT : BOOKING SUMMARY -->
+        <!-- ================================= -->
+
+        <div class="booking-summary">
+
+            <h2>
+                Booking Summary
+            </h2>
+
+
+            <div class="summary-item">
+                <span>Check In</span>
+
+                <strong>
+                    <%= formatDate(checkIn) %>
+                </strong>
+            </div>
+
+
+            <div class="summary-item">
+                <span>Check Out</span>
+
+                <strong>
+                    <%= formatDate(checkOut) %>
+                </strong>
+            </div>
+
+
+            <div class="summary-item">
+                <span>Nights</span>
+
+                <strong>
+                    <%= numberOfNights %>
+                    <%= numberOfNights === 1 ? "Night" : "Nights" %>
+                </strong>
+            </div>
+
+
+            <div class="summary-item">
+                <span>Guests</span>
+
+                <strong>
+                    <%= numberOfGuests %>
+                    <%= numberOfGuests === 1 ? "Guest" : "Guests" %>
+                </strong>
+            </div>
+
+
+            <hr>
+
+
+            <div class="summary-total">
+
+                <span>Total</span>
+
+                <strong>
+                    ₹ <%= totalPrice.toLocaleString("en-IN") %>
+                </strong>
+
+            </div>
+
+
+            <form
+                action="/bookings"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="listing"
+                    value="<%= listing._id %>"
+                >
+
+                <input
+                    type="hidden"
+                    name="checkIn"
+                    value="<%= checkIn %>"
+                >
+
+                <input
+                    type="hidden"
+                    name="checkOut"
+                    value="<%= checkOut %>"
+                >
+
+                <input
+                    type="hidden"
+                    name="guests"
+                    value="<%= numberOfGuests %>"
+                >
+
+                <button
+                    type="submit"
+                    class="confirm-booking-btn"
+                >
+                    Confirm Booking
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,218 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<!-- =====================================================
+     MY BOOKINGS PAGE
+===================================================== -->
+
+<div class="my-bookings-page">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
+
+    <div class="my-bookings-header">
+
+        <h1>
+            📖 My Bookings
+        </h1>
+
+        <p>
+            View all your confirmed stays.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         NO BOOKINGS
+    ================================================= -->
+
+    <% if(bookings.length === 0){ %>
+
+
+        <div class="my-empty-bookings">
+
+            <h3>
+                No bookings yet!
+            </h3>
+
+
+            <a
+                href="/listings"
+                class="explore-btn"
+            >
+                Explore Stays
+            </a>
+
+        </div>
+
+
+    <% } else { %>
+
+
+
+        <!-- =================================================
+             BOOKINGS
+        ================================================= -->
+
+        <% bookings.forEach(booking => { %>
+
+
+            <div class="my-booking-card">
+
+
+                <!-- =========================================
+                     IMAGE
+                ========================================= -->
+
+                <div class="my-booking-card-image">
+
+                    <img
+                        src="<%= booking.listing.image.url %>"
+                        alt="<%= booking.listing.title %>"
+                        class="my-booking-card-img"
+                    >
+
+                </div>
+
+
+
+                <!-- =========================================
+                     BOOKING DETAILS
+                ========================================= -->
+
+                <div class="my-booking-card-info">
+
+
+                    <h3>
+                        <%= booking.listing.title %>
+                    </h3>
+
+
+                    <p>
+                        📍
+                        <%= booking.listing.location %>,
+                        <%= booking.listing.country %>
+                    </p>
+
+
+                    <p>
+                        📅 Check In :
+                        <%= booking.checkIn.toDateString() %>
+                    </p>
+
+
+                    <p>
+                        📅 Check Out :
+                        <%= booking.checkOut.toDateString() %>
+                    </p>
+
+
+                    <p>
+                        👥 Guests :
+                        <%= booking.guests %>
+                        <%= booking.guests == 1 ? "Guest" : "Guests" %>
+                    </p>
+
+
+                    <h4>
+                        ₹ <%= booking.totalPrice.toLocaleString("en-IN") %>
+                    </h4>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     ACTIONS
+                ========================================= -->
+
+                <div class="my-booking-card-actions">
+
+
+                    <!-- =====================================
+                         STATUS
+                    ===================================== -->
+
+                    <% if(booking.status === "Cancelled"){ %>
+
+
+                        <span class="status-badge cancelled">
+                            Cancelled
+                        </span>
+
+
+                    <% } else { %>
+
+
+                        <span class="status-badge confirmed">
+                            Confirmed
+                        </span>
+
+
+                    <% } %>
+
+
+
+                    <!-- =====================================
+                         BUTTONS
+                    ===================================== -->
+
+                    <div class="my-booking-buttons">
+
+
+                        <!-- VIEW LISTING -->
+
+                        <a
+                            href="/listings/<%= booking.listing._id %>"
+                            class="view-btn"
+                        >
+                            View Listing
+                        </a>
+
+
+
+                        <!-- CANCEL BOOKING -->
+
+                        <% if(booking.status !== "Cancelled"){ %>
+
+
+                            <form
+                                action="/bookings/<%= booking._id %>?_method=PUT"
+                                method="POST"
+                                class="cancel-booking-form"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="cancel-btn"
+                                >
+                                    Cancel Booking
+                                </button>
+
+                            </form>
+
+
+                        <% } %>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        <% }) %>
+
+
+    <% } %>
+
+
+</div>
