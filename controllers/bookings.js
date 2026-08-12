@@ -3,22 +3,6 @@ const Listing = require("../models/listing");
 
 
 // =====================================================
-// HELPER - BOOKING PAGE REDIRECT
-// =====================================================
-
-const bookingRedirect = (listingId, checkIn, checkOut, guests) => {
-
-    return `/listings/${listingId}/book?checkIn=${encodeURIComponent(
-        checkIn || ""
-    )}&checkOut=${encodeURIComponent(
-        checkOut || ""
-    )}&guests=${encodeURIComponent(
-        guests || ""
-    )}`;
-};
-
-
-// =====================================================
 // SHOW BOOKING CONFIRMATION PAGE
 // =====================================================
 
@@ -40,26 +24,23 @@ module.exports.renderBookingForm = async (req, res) => {
             return res.redirect("/listings");
         }
 
-
         res.render("bookings/new", {
             listing,
             query: req.query
         });
 
-
     } catch (error) {
 
-        console.log(error);
+        console.log("BOOKING PAGE ERROR:", error);
 
         req.flash(
             "error",
             "Unable to open booking page!"
         );
 
-        res.redirect("/listings");
+        return res.redirect("/listings");
     }
 };
-
 
 
 // =====================================================
@@ -84,14 +65,8 @@ module.exports.createBooking = async (req, res) => {
 
         if (!listingId || !checkIn || !checkOut || !guests) {
 
-            req.flash(
-                "error",
-                "Please provide all booking details."
-            );
-
             return res.redirect("/listings");
         }
-
 
 
         // =================================================
@@ -111,34 +86,31 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-
         // =================================================
         // VALIDATE GUESTS
         // =================================================
 
         const numberOfGuests = Number(guests);
 
-
         if (
             !Number.isInteger(numberOfGuests) ||
             numberOfGuests < 1
         ) {
 
-            req.flash(
-                "error",
-                "Please select at least 1 guest."
-            );
+            return res.status(400).render("bookings/new", {
 
-            return res.redirect(
-                bookingRedirect(
-                    listingId,
+                listing,
+
+                query: {
                     checkIn,
                     checkOut,
                     guests
-                )
-            );
-        }
+                },
 
+                error: "Please select at least 1 guest."
+
+            });
+        }
 
 
         // =================================================
@@ -154,9 +126,8 @@ module.exports.createBooking = async (req, res) => {
         );
 
 
-
         // =================================================
-        // CHECK INVALID DATE
+        // INVALID DATE
         // =================================================
 
         if (
@@ -164,21 +135,21 @@ module.exports.createBooking = async (req, res) => {
             Number.isNaN(endDate.getTime())
         ) {
 
-            req.flash(
-                "error",
-                "Please select valid check-in and check-out dates."
-            );
+            return res.status(400).render("bookings/new", {
 
-            return res.redirect(
-                bookingRedirect(
-                    listingId,
+                listing,
+
+                query: {
                     checkIn,
                     checkOut,
                     guests
-                )
-            );
-        }
+                },
 
+                error:
+                    "Please select valid check-in and check-out dates."
+
+            });
+        }
 
 
         // =================================================
@@ -190,28 +161,27 @@ module.exports.createBooking = async (req, res) => {
         today.setHours(0, 0, 0, 0);
 
 
-
         // =================================================
-        // PAST DATE VALIDATION
+        // PAST CHECK-IN
         // =================================================
 
         if (startDate < today) {
 
-            req.flash(
-                "error",
-                "Check-in date cannot be in the past."
-            );
+            return res.status(400).render("bookings/new", {
 
-            return res.redirect(
-                bookingRedirect(
-                    listingId,
+                listing,
+
+                query: {
                     checkIn,
                     checkOut,
                     guests
-                )
-            );
-        }
+                },
 
+                error:
+                    "Check-in date cannot be in the past."
+
+            });
+        }
 
 
         // =================================================
@@ -220,21 +190,21 @@ module.exports.createBooking = async (req, res) => {
 
         if (endDate <= startDate) {
 
-            req.flash(
-                "error",
-                "Check-out date must be after check-in date."
-            );
+            return res.status(400).render("bookings/new", {
 
-            return res.redirect(
-                bookingRedirect(
-                    listingId,
+                listing,
+
+                query: {
                     checkIn,
                     checkOut,
                     guests
-                )
-            );
-        }
+                },
 
+                error:
+                    "Check-out date must be after check-in date."
+
+            });
+        }
 
 
         // =================================================
@@ -244,13 +214,11 @@ module.exports.createBooking = async (req, res) => {
         const timeDifference =
             endDate.getTime() - startDate.getTime();
 
-
         const numberOfNights =
             Math.ceil(
                 timeDifference /
                 (1000 * 60 * 60 * 24)
             );
-
 
 
         // =================================================
@@ -277,21 +245,21 @@ module.exports.createBooking = async (req, res) => {
 
         if (existingBooking) {
 
-            req.flash(
-                "error",
-                "Sorry, this listing is already booked for the selected dates."
-            );
+            return res.status(400).render("bookings/new", {
 
-            return res.redirect(
-                bookingRedirect(
-                    listingId,
+                listing,
+
+                query: {
                     checkIn,
                     checkOut,
                     guests
-                )
-            );
-        }
+                },
 
+                error:
+                    "Sorry, this listing is already booked for the selected dates."
+
+            });
+        }
 
 
         // =================================================
@@ -302,7 +270,6 @@ module.exports.createBooking = async (req, res) => {
             listing.price *
             numberOfNights *
             numberOfGuests;
-
 
 
         // =================================================
@@ -322,7 +289,6 @@ module.exports.createBooking = async (req, res) => {
         console.log("Total Price:", totalPrice);
 
         console.log("=================================");
-
 
 
         // =================================================
@@ -348,13 +314,11 @@ module.exports.createBooking = async (req, res) => {
         });
 
 
-
         // =================================================
         // SAVE BOOKING
         // =================================================
 
         await booking.save();
-
 
 
         // =================================================
@@ -366,25 +330,21 @@ module.exports.createBooking = async (req, res) => {
             "Booking confirmed successfully!"
         );
 
-
-        res.redirect("/bookings");
+        return res.redirect("/bookings");
 
 
     } catch (error) {
 
         console.log("BOOKING ERROR:", error);
 
-
         req.flash(
             "error",
             "Something went wrong while creating booking!"
         );
 
-
-        res.redirect("/listings");
+        return res.redirect("/listings");
     }
 };
-
 
 
 // =====================================================
@@ -411,20 +371,18 @@ module.exports.myBookings = async (req, res) => {
             bookings
         });
 
-
     } catch (error) {
 
-        console.log(error);
+        console.log("MY BOOKINGS ERROR:", error);
 
         req.flash(
             "error",
             "Unable to load your bookings."
         );
 
-        res.redirect("/listings");
+        return res.redirect("/listings");
     }
 };
-
 
 
 // =====================================================
@@ -455,6 +413,8 @@ module.exports.cancelBooking = async (req, res) => {
 
             return res.redirect("/bookings");
         }
+
+
         // =================================================
         // SECURITY CHECK
         // =================================================
@@ -473,7 +433,6 @@ module.exports.cancelBooking = async (req, res) => {
         }
 
 
-
         // =================================================
         // ALREADY CANCELLED
         // =================================================
@@ -489,7 +448,6 @@ module.exports.cancelBooking = async (req, res) => {
         }
 
 
-
         // =================================================
         // CANCEL BOOKING
         // =================================================
@@ -499,25 +457,24 @@ module.exports.cancelBooking = async (req, res) => {
         await booking.save();
 
 
-
         req.flash(
             "success",
             "Booking cancelled successfully!"
         );
 
 
-        res.redirect("/bookings");
+        return res.redirect("/bookings");
 
 
     } catch (error) {
 
-        console.log(error);
+        console.log("CANCEL BOOKING ERROR:", error);
 
         req.flash(
             "error",
             "Unable to cancel booking."
         );
 
-        res.redirect("/bookings");
+        return res.redirect("/bookings");
     }
 };

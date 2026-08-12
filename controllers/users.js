@@ -1,4 +1,6 @@
 const User = require("../models/user.js");
+const Listing = require("../models/listing.js");
+const Booking = require("../models/booking.js");
 
 module.exports.renderSignupForm = (req, res) => {
     res.render("users/signup.ejs");
@@ -75,5 +77,30 @@ module.exports.logout = (req, res, next) => {
         }
         req.flash("success", "You have been logged out successfully.");
         res.redirect("/listings");
+    });
+};
+
+// ===============================
+// SHOW USER PROFILE
+// ===============================
+
+module.exports.renderProfile = async (req, res) => {
+
+    const user = req.user;
+
+    // Count user's listings
+    const totalListings = await Listing.countDocuments({
+        owner: user._id
+    });
+
+    // Count user's bookings
+    const totalBookings = await Booking.countDocuments({
+        guest: user._id
+    });
+
+    res.render("users/profile", {
+        user,
+        totalListings,
+        totalBookings
     });
 };

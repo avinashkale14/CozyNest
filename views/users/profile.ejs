@@ -1,0 +1,167 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<!-- ================================= -->
+<!-- PROFILE PAGE -->
+<!-- ================================= -->
+
+<div class="profile-page">
+
+
+    <!-- ================================= -->
+    <!-- PROFILE HEADER -->
+    <!-- ================================= -->
+
+    <div class="profile-header">
+
+        <h1>
+            👤 My Profile
+        </h1>
+
+        <p>
+            Manage your Cozynest account and activity.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- PROFILE CARD -->
+    <!-- ================================= -->
+
+    <div class="profile-card">
+
+
+        <!-- AVATAR -->
+
+        <div class="profile-page-avatar">
+
+            <%= user.username.charAt(0).toUpperCase() %>
+
+        </div>
+
+
+        <!-- USER INFO -->
+
+        <div class="profile-user-info">
+
+            <h2>
+                <%= user.username %>
+            </h2>
+
+            <p>
+                <%= user.email %>
+            </p>
+
+            <span class="profile-member">
+                Cozynest Member
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- ACTIVITY -->
+    <!-- ================================= -->
+
+    <div class="profile-section">
+
+        <h2>
+            Your Activity
+        </h2>
+
+        <p>
+            A quick overview of your activity on Cozynest.
+        </p>
+
+
+        <div class="profile-stats">
+
+
+            <!-- LISTINGS -->
+
+            <a
+                href="/listings"
+                class="profile-stat-card"
+            >
+
+                <div class="profile-stat-icon">
+                    🏠
+                </div>
+
+                <div>
+
+                    <strong>
+                        <%= totalListings %>
+                    </strong>
+
+                    <span>
+                        My Listings
+                    </span>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- BOOKINGS -->
+
+            <a
+                href="/bookings"
+                class="profile-stat-card"
+            >
+
+                <div class="profile-stat-icon">
+                    📖
+                </div>
+
+                <div>
+
+                    <strong>
+                        <%= totalBookings %>
+                    </strong>
+
+                    <span>
+                        My Bookings
+                    </span>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- WISHLIST -->
+
+            <div class="profile-stat-card profile-stat-disabled">
+
+                <div class="profile-stat-icon">
+                    ❤️
+                </div>
+
+                <div>
+
+                    <strong>
+                        —
+                    </strong>
+
+                    <span>
+                        Wishlist
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>

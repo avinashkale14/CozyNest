@@ -1,0 +1,98 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="wishlist-page">
+
+    <div class="wishlist-header">
+        <h1>❤️ My Wishlist</h1>
+        <p>Your saved stays in one place.</p>
+    </div>
+
+
+    <% if (listings.length === 0) { %>
+
+        <div class="empty-wishlist">
+
+            <div class="empty-wishlist-icon">
+                ❤️
+            </div>
+
+            <h2>Your wishlist is empty</h2>
+
+            <p>
+                Save your favourite stays and find them here later.
+            </p>
+
+            <a href="/listings" class="wishlist-explore-btn">
+                Explore Stays
+            </a>
+
+        </div>
+
+    <% } else { %>
+
+
+        <div class="wishlist-grid">
+
+            <% listings.forEach(listing => { %>
+
+                <div class="wishlist-card">
+
+                    <div class="wishlist-image">
+                        <img
+                            src="<%= listing.image.url %>"
+                            alt="<%= listing.title %>"
+                        >
+                    </div>
+
+                    <div class="wishlist-card-body">
+
+                        <h3>
+                            <%= listing.title %>
+                        </h3>
+
+                        <p class="wishlist-location">
+                            📍
+                            <%= listing.location %>,
+                            <%= listing.country %>
+                        </p>
+
+                        <p class="wishlist-price">
+                            ₹<%= listing.price.toLocaleString("en-IN") %>
+                            <span>/ night</span>
+                        </p>
+
+                        <div class="wishlist-actions">
+
+                            <a
+                                href="/listings/<%= listing._id %>"
+                                class="wishlist-view-btn"
+                            >
+                                View Listing
+                            </a>
+
+                            <form
+                                class="remove-wishlist-form"
+                                data-id="<%= listing._id %>"
+                            >
+                                <button
+                                    type="submit"
+                                    class="remove-wishlist-btn"
+                                >
+                                    <i class="fa-solid fa-heart-crack"></i>
+                                    Remove
+                                </button>
+                            </form> 
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %> 
+
+        </div>
+
+    <% } %>
+
+</div>

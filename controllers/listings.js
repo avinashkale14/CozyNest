@@ -4,6 +4,9 @@ maptilerClient.config.apiKey = process.env.MAPTILER_KEY;
 
 const Listing = require("../models/listing");
 
+const User = require("../models/user");
+
+
 // ================== INDEX ==================
 module.exports.index = async (req, res) => {
     const allListings = await Listing.find({});
@@ -16,7 +19,9 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 // ================== SHOW ==================
+
 module.exports.showListing = async (req, res) => {
+
     const { id } = req.params;
 
     const listing = await Listing.findById(id)
@@ -33,10 +38,26 @@ module.exports.showListing = async (req, res) => {
         return res.redirect("/listings");
     }
 
+    let isWishlisted = false;
+
+    if (req.user) {
+
+        const user = await User.findById(req.user._id);
+
+        if (user) {
+            isWishlisted = user.wishlist.some(
+                item => item.equals(listing._id)
+            );
+        }
+
+    }
+
     res.render("listings/show", {
-    listing,
-    mapToken: process.env.MAPTILER_KEY
+        listing,
+        mapToken: process.env.MAPTILER_KEY,
+        isWishlisted
     });
+
 };
 // ================== CREATE ==================
 module.exports.createListing = async (req, res) => {
@@ -138,4 +159,20 @@ module.exports.destroyListing = async (req, res) => {
 
     req.flash("success", "Listing Deleted!");
     return res.redirect("/listings");  // ✅ RETURN
+};
+
+// ===============================
+// MY LISTINGS
+// ===============================
+
+module.exports.myListings = async (req, res) => {
+
+    const listings = await Listing.find({
+        owner: req.user._id
+    });
+
+    res.render("listings/myListings", {
+        listings
+    });
+
 };

@@ -32,25 +32,31 @@
 
     <% if(bookings.length === 0){ %>
 
+    <div class="my-empty-bookings">
 
-        <div class="my-empty-bookings">
-
-            <h3>
-                No bookings yet!
-            </h3>
-
-
-            <a
-                href="/listings"
-                class="explore-btn"
-            >
-                Explore Stays
-            </a>
-
+        <div class="empty-booking-icon">
+            📖
         </div>
 
+        <h3>
+            No bookings yet!
+        </h3>
 
-    <% } else { %>
+        <p>
+            You haven't booked any stays yet.
+            Explore our beautiful stays and plan your next trip.
+        </p>
+
+        <a
+            href="/listings"
+            class="explore-btn"
+        >
+            Explore Stays
+        </a>
+
+    </div>
+
+<% } else { %>
 
 
 

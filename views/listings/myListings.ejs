@@ -1,0 +1,143 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="my-listings-page">
+
+    <!-- Header -->
+    <div class="my-listings-header">
+
+        <div>
+            <h1>
+                <i class="fa-solid fa-house"></i>
+                My Listings
+            </h1>
+
+            <p>Manage the stays you've created.</p>
+        </div>
+
+        <a href="/listings/new" class="create-listing-btn">
+            <i class="fa-solid fa-plus"></i>
+            Create Listing
+        </a>
+
+    </div>
+
+
+    <% if (listings.length === 0) { %>
+
+        <!-- Empty State -->
+
+        <div class="empty-listings">
+
+            <div class="empty-icon">
+                <i class="fa-regular fa-house"></i>
+            </div>
+
+            <h2>You haven't created any listings yet.</h2>
+
+            <p>
+                Start hosting your place and share it with travelers.
+            </p>
+
+            <a href="/listings/new" class="create-listing-btn">
+                <i class="fa-solid fa-plus"></i>
+                Create Your First Listing
+            </a>
+
+        </div>
+
+    <% } else { %>
+
+
+        <!-- Listings Grid -->
+
+        <div class="my-listings-grid">
+
+            <% listings.forEach((listing) => { %>
+
+                <div class="my-listing-card">
+
+                    <!-- Image -->
+
+                    <div class="my-listing-image-wrapper">
+
+                        <img
+                            src="<%= listing.image.url %>"
+                            alt="<%= listing.title %>"
+                            class="my-listing-image"
+                        >
+
+                    </div>
+
+
+                    <!-- Content -->
+
+                    <div class="my-listing-content">
+
+                        <h2>
+                            <%= listing.title %>
+                        </h2>
+
+                        <p class="listing-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <%= listing.location %>,
+                            <%= listing.country %>
+                        </p>
+
+
+                        <p class="listing-price">
+                            ₹<%= listing.price.toLocaleString("en-IN") %>
+                            <span>/ night</span>
+                        </p>
+
+
+                        <!-- Actions -->
+
+                        <div class="listing-actions">
+
+                            <a
+                                href="/listings/<%= listing._id %>/edit"
+                                class="edit-listing-btn"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                                Edit Listing
+                            </a>
+
+
+                            <a
+                                href="/listings/<%= listing._id %>"
+                                class="view-listing-btn"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                                View Listing
+                            </a>
+
+
+                            <form
+                                action="/listings/<%= listing._id %>?_method=DELETE"
+                                method="POST"
+                                class="delete-form"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-listing-btn"
+                                >
+                                    <i class="fa-solid fa-trash"></i>
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>

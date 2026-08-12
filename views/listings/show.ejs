@@ -8,9 +8,52 @@
             <%= listing.title %>
         </h1>
         <div class="show-card">
-            <div class="show-image-box">
-                <img src="<%= listing.image.url %>" class="show-image">
-            </div>
+
+        <div class="show-image-box">
+
+    <img
+        src="<%= listing.image.url %>"
+        class="show-image"
+        alt="<%= listing.title %>"
+    >
+
+    <% if (currUser) { %>
+
+        <form
+            action="/listings/<%= listing._id %>/wishlist"
+            method="POST"
+            class="wishlist-form"
+        >
+
+            <button
+                type="submit"
+                class="wishlist-btn <%= isWishlisted ? 'active' : '' %>"
+                title="<%= isWishlisted ? 'Already in wishlist' : 'Add to wishlist' %>"
+            >
+
+                <i class="<%= isWishlisted
+                    ? 'fa-solid fa-heart'
+                    : 'fa-regular fa-heart'
+                %>"></i>
+
+            </button>
+
+        </form>
+
+    <% } else { %>
+
+        <a
+            href="/login"
+            class="wishlist-btn"
+            title="Login to add to Wishlist"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    <% } %>
+
+</div>
+        
             <div class="show-details">
                 <p>Owned by <i><%= listing.owner ? listing.owner.username : "Avinash Kale" %></i></p>
                 <p><%= listing.description %></p>
@@ -52,73 +95,113 @@
     <a href="/listings" class="back-btn">
         <b>← Back to Listings</b>
     </a>
+
     <% if (!currUser) { %>
+
         <h3>Planning a getaway?</h3>
+
         <p>
             Sign in to check date availability,
             view price calculations,
             and book this place.
         </p>
+
         <a href="/login" class="reserve-btn">
             Log In to Reserve
         </a>
+
     <% } else { %>
+
         <h3>
             <i class="fa-solid fa-calendar-check"></i>
             Book this Listing
         </h3>
 
-        <form action="/listings/<%= listing._id %>/book" method="GET">
+
+        <form
+            action="/listings/<%= listing._id %>/book"
+            method="GET"
+            id="booking-form"
+        >
 
             <div class="row">
+
                 <div class="col-6 text-start">
-                    <label class="form-label">Check-in</label>
+
+                    <label class="form-label">
+                        Check-in
+                    </label>
+
                     <input
                         type="date"
                         class="form-control"
+                        id="checkIn"
                         name="checkIn"
                         required
                     >
+
                 </div>
 
+
                 <div class="col-6 text-start">
-                    <label class="form-label">Check-out</label>
+
+                    <label class="form-label">
+                        Check-out
+                    </label>
+
                     <input
                         type="date"
                         class="form-control"
+                        id="checkOut"
                         name="checkOut"
                         required
                     >
+
                 </div>
+
             </div>
+
 
             <div class="row align-items-end mt-2">
 
-                <!-- Guests -->
                 <div class="col-3">
-                    <label class="form-label">Guests</label>
 
-                    <select class="form-select" name="guests">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
+                    <label class="form-label">
+                        Guests
+                    </label>
+
+                    <select
+                        class="form-select"
+                        name="guests"
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
+
                 </div>
 
-                <!-- Reserve Button -->
+
                 <div class="col-9">
-                    <button type="submit" class="reserve-btn w-100">
+
+                    <button
+                        type="submit"
+                        class="reserve-btn w-100"
+                    >
                         Reserve Now
                     </button>
+
                 </div>
 
             </div>
 
         </form>
+
     <% } %>
+
 </div>
 
 
@@ -292,3 +375,117 @@
 </script>
 
 <script src="/js/map.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const bookingForm = document.getElementById("booking-form");
+
+    if (!bookingForm) return;
+
+    const checkIn = document.getElementById("checkIn");
+    const checkOut = document.getElementById("checkOut");
+
+
+    // ==========================================
+    // TODAY
+    // ==========================================
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+
+    const month = String(
+        today.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+        today.getDate()
+    ).padStart(2, "0");
+
+    const todayString =
+        `${year}-${month}-${day}`;
+
+
+    // Check-in cannot be before today
+    checkIn.min = todayString;
+
+    // Checkout cannot be before today
+    checkOut.min = todayString;
+
+
+    // ==========================================
+    // WHEN CHECK-IN CHANGES
+    // ==========================================
+
+    checkIn.addEventListener("change", function () {
+
+        if (!this.value) return;
+
+        const checkInDate = new Date(
+            this.value + "T00:00:00"
+        );
+
+        // Add 1 day
+        checkInDate.setDate(
+            checkInDate.getDate() + 1
+        );
+
+        const nextDayYear =
+            checkInDate.getFullYear();
+
+        const nextDayMonth =
+            String(
+                checkInDate.getMonth() + 1
+            ).padStart(2, "0");
+
+        const nextDay =
+            String(
+                checkInDate.getDate()
+            ).padStart(2, "0");
+
+        const minimumCheckoutDate =
+            `${nextDayYear}-${nextDayMonth}-${nextDay}`;
+
+        // Checkout must be AFTER check-in
+        checkOut.min = minimumCheckoutDate;
+
+
+        // Clear invalid existing checkout
+        if (
+            checkOut.value &&
+            checkOut.value < minimumCheckoutDate
+        ) {
+            checkOut.value = "";
+        }
+
+    });
+
+
+    // ==========================================
+    // FORM SUBMIT
+    // ==========================================
+
+    bookingForm.addEventListener(
+        "submit",
+        function (event) {
+
+            // Let HTML5/browser validation
+            // handle invalid dates.
+
+            if (!bookingForm.checkValidity()) {
+
+                event.preventDefault();
+
+                bookingForm.reportValidity();
+
+                return;
+            }
+
+        }
+    );
+
+});
+
+</script>

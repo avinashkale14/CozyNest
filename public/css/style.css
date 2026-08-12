@@ -801,6 +801,54 @@ display: flex;
     overflow:hidden;
     border-radius:18px;
     background:#f5f5f5;
+    position:relative;
+}
+
+/* ==========================
+   WISHLIST BUTTON
+========================== */
+
+.wishlist-form {
+    position:absolute;
+    top:16px;
+    right:16px;
+    z-index:10;
+}
+
+.wishlist-btn {
+    width:46px;
+    height:46px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.95);
+    color:#333;
+
+    font-size:21px;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.15);
+
+    transition:.25s ease;
+}
+
+.wishlist-btn:hover {
+    background:#fff;
+    color:#ff385c;
+
+    transform:scale(1.08);
+}
+
+.wishlist-btn i {
+    pointer-events:none;
 }
 
 .show-image{
@@ -1019,6 +1067,17 @@ display: flex;
     .btns form,
     .btns form button{
         width:100%;
+    }
+    
+    .wishlist-form {
+    top:12px;
+    right:12px;
+    }
+
+    .wishlist-btn {
+        width:42px;
+        height:42px;
+        font-size:19px;
     }
 
 }
@@ -1786,7 +1845,7 @@ display: flex;
 .my-bookings-page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 10px 0px;
+    padding: 20px 10px 0px;
 }
 
 
@@ -2126,29 +2185,71 @@ display: flex;
 ========================================================= */
 
 .my-empty-bookings {
-    max-width: 700px;
+    width: min(100%, 520px);
+    box-sizing: border-box;
 
     margin: 20px auto 0;
-
-    padding: 70px 20px;
+    padding: 45px 30px;
 
     text-align: center;
 
     background: #fff;
-
     border: 1px solid #ececec;
-
     border-radius: 18px;
 
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
+
+/* ICON */
+
+.empty-booking-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f3;
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+
+/* TITLE */
+
 .my-empty-bookings h3 {
-    margin: 0;
+    margin: 0 0 8px;
 
     font-size: 1.4rem;
+    font-weight: 600;
 
-    color: #333;
+    color: #111827;
+}
+
+
+/* DESCRIPTION */
+
+.my-empty-bookings p {
+    max-width: 400px;
+
+    margin: 0 auto;
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+
+    color: #666;
+}
+
+
+/* BUTTON */
+
+.my-empty-bookings .explore-btn {
+    margin-top: 22px;
 }
 
 
@@ -2405,16 +2506,37 @@ display: flex;
     /* Empty */
 
     .my-empty-bookings {
-        margin-top: 12px;
+    width: 100%;
+    margin: 12px auto 0;
 
-        padding: 55px 15px;
+    padding: 32px 18px;
 
-        border-radius: 15px;
-    }
+    border-radius: 15px;
+}
 
-    .my-empty-bookings h3 {
-        font-size: 1.15rem;
-    }
+.empty-booking-icon {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 14px;
+
+    font-size: 25px;
+}
+
+.my-empty-bookings h3 {
+    margin-bottom: 7px;
+    font-size: 1.15rem;
+}
+
+.my-empty-bookings p {
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.my-empty-bookings .explore-btn {
+    width: 100%;
+    margin-top: 18px;
+}
 }
 
 
@@ -2477,5 +2599,1241 @@ display: flex;
         height: 43px;
 
         font-size: 0.82rem;
+    }
+}
+
+
+
+/* =================================
+   PROFILE PAGE
+================================= */
+
+.profile-page {
+    max-width: 1050px;
+    margin: 20px auto 0px;
+    padding: 0 25px;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile-header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #111827;
+}
+
+.profile-header p {
+    color: #666;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+
+/* =================================
+   PROFILE CARD
+================================= */
+
+.profile-card {
+    background: #fff;
+
+    border: 1px solid #ececec;
+    border-radius: 20px;
+
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 30px;
+}
+
+/* =================================
+   PROFILE PAGE AVATAR
+================================= */
+
+.profile-page-avatar {
+    width: 100px;
+    height: 100px;
+
+    min-width: 100px;
+    min-height: 100px;
+
+    border-radius: 50%;
+
+    background: #ff385c;
+
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2.5rem;
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px rgba(255, 56, 92, 0.2);
+
+    flex-shrink: 0;
+}
+
+
+/* =================================
+   USER INFO
+================================= */
+
+.profile-user-info h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+
+    margin-bottom: 6px;
+
+    color: #111827;
+}
+
+.profile-user-info p {
+    color: #666;
+
+    font-size: 1rem;
+
+    margin-bottom: 12px;
+}
+
+.profile-member {
+    display: inline-block;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    background: #fff0f3;
+
+    color: #ff385c;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+
+/* =================================
+   SECTION
+================================= */
+
+.profile-section {
+    margin-bottom: 10px;
+}
+
+.profile-section > h2 {
+    font-size: 1.5rem;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+
+    color: #111827;
+}
+
+.profile-section > p {
+    color: #666;
+
+    margin-bottom: 20px;
+}
+
+
+/* =================================
+   STATS
+================================= */
+
+.profile-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =================================
+   STAT CARD
+================================= */
+
+.profile-stat-card {
+    background: #fff;
+
+    border: 1px solid #ececec;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.05);
+
+    transition: 0.25s ease;
+}
+
+.profile-stat-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.09);
+
+    border-color: #ffd0d9;
+}
+
+
+/* =================================
+   STAT ICON
+================================= */
+
+.profile-stat-icon {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+
+    background: #fff0f3;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+}
+
+
+/* =================================
+   STAT TEXT
+================================= */
+
+.profile-stat-card strong {
+    display: block;
+
+    font-size: 1.6rem;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    margin-bottom: 2px;
+}
+
+.profile-stat-card span {
+    display: block;
+
+    font-size: 0.9rem;
+
+    color: #666;
+}
+
+
+/* =================================
+   DISABLED WISHLIST
+================================= */
+
+.profile-stat-disabled {
+    cursor: default;
+}
+
+.profile-stat-disabled:hover {
+    transform: none;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.05);
+
+    border-color: #ececec;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 768px) {
+
+    .profile-page {
+        margin-top: 25px;
+
+        padding: 0 18px;
+    }
+
+
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+
+
+    .profile-header p {
+        font-size: 0.95rem;
+    }
+
+
+    .profile-card {
+        padding: 25px;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+
+    .profile-page-avatar {
+    width: 85px;
+    height: 85px;
+
+    min-width: 85px;
+    min-height: 85px;
+
+    font-size: 2rem;
+    }
+
+
+    .profile-user-info h2 {
+        font-size: 1.5rem;
+    }
+
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .profile-stat-card {
+        padding: 20px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .profile-page {
+        padding: 0 15px;
+
+        margin-top: 20px;
+    }
+
+
+    .profile-header h1 {
+        font-size: 1.75rem;
+    }
+
+
+    .profile-card {
+        border-radius: 16px;
+
+        padding: 22px;
+    }
+
+
+    .profile-section > h2 {
+        font-size: 1.3rem;
+    }
+
+}
+
+
+/* =========================================
+   MY LISTINGS PAGE
+========================================= */
+
+.my-listings-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px 0px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.my-listings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.my-listings-header h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0b1f3a;
+}
+
+.my-listings-header h1 i {
+    color: #ff385c;
+    margin-right: 10px;
+}
+
+.my-listings-header p {
+    margin: 8px 0 0;
+    font-size: 16px;
+    color: #6b7280;
+}
+
+
+/* =========================================
+   CREATE BUTTON
+========================================= */
+
+.create-listing-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 13px 20px;
+
+    background: #ff385c;
+    color: white;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.create-listing-btn:hover {
+    background: #e62e50;
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(255, 56, 92, 0.25);
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.my-listings-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+
+/* =========================================
+   LISTING CARD
+========================================= */
+
+.my-listing-card {
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.my-listing-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.my-listing-image-wrapper {
+    width: 100%;
+    height: 260px;
+
+    overflow: hidden;
+}
+
+.my-listing-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+.my-listing-card:hover .my-listing-image {
+    transform: scale(1.04);
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.my-listing-content {
+    padding: 22px;
+}
+
+.my-listing-content h2 {
+    margin: 0 0 10px;
+
+    font-size: 22px;
+    font-weight: 650;
+
+    color: #0b1f3a;
+
+    line-height: 1.3;
+}
+
+
+.listing-location {
+    margin: 0 0 16px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+}
+
+.listing-location i {
+    color: #ff385c;
+    margin-right: 5px;
+}
+
+
+.listing-price {
+    margin: 0 0 20px;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    color: #111827;
+}
+
+.listing-price span {
+    font-size: 14px;
+    font-weight: 400;
+
+    color: #6b7280;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.listing-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eeeeee;
+}
+
+
+.edit-listing-btn,
+.view-listing-btn,
+.delete-listing-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 10px 14px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Edit */
+
+.edit-listing-btn {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.edit-listing-btn:hover {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+
+/* View */
+
+.view-listing-btn {
+    background: #ff385c;
+    color: white;
+}
+
+.view-listing-btn:hover {
+    background: #e62e50;
+    color: white;
+
+    transform: translateY(-1px);
+}
+
+
+/* Delete */
+
+.delete-form {
+    margin: 0;
+}
+
+.delete-listing-btn {
+    border: 1px solid #ff385c;
+
+    background: white;
+
+    color: #ff385c;
+}
+
+.delete-listing-btn:hover {
+    background: #fff1f2;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-listings {
+
+    max-width: 600px;
+
+    margin: 20px auto;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.empty-icon {
+
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff1f2;
+
+    color: #ff385c;
+
+    font-size: 28px;
+}
+
+.empty-listings h2 {
+
+    margin-bottom: 10px;
+
+    color: #0b1f3a;
+
+    font-size: 25px;
+}
+
+.empty-listings p {
+
+    margin-bottom: 25px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .my-listings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .my-listings-header {
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .my-listings-page {
+        padding: 30px 16px 50px;
+    }
+
+    .my-listings-header {
+        flex-direction: column;
+    }
+
+    .my-listings-header h1 {
+        font-size: 32px;
+    }
+
+    .create-listing-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .my-listing-image-wrapper {
+        height: 220px;
+    }
+
+    .my-listing-content {
+        padding: 18px;
+    }
+
+    .my-listing-content h2 {
+        font-size: 20px;
+    }
+
+    .listing-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .edit-listing-btn,
+    .view-listing-btn,
+    .delete-listing-btn {
+        width: 100%;
+    }
+    .empty-listings {
+        margin-bottom: 0px;
+    }
+
+}
+
+
+/* =========================================================
+   WISHLIST PAGE
+========================================================= */
+
+.wishlist-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.wishlist-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.wishlist-header h1 {
+    margin: 0 0 8px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.wishlist-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 1.05rem;
+}
+
+
+/* =========================
+   WISHLIST GRID
+========================= */
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+
+/* =========================
+   WISHLIST CARD
+========================= */
+
+.wishlist-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wishlist-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.wishlist-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.wishlist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.wishlist-card:hover .wishlist-image img {
+    transform: scale(1.04);
+}
+
+
+/* =========================
+   CARD BODY
+========================= */
+
+.wishlist-card-body {
+    padding: 22px;
+}
+
+.wishlist-card-body h3 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+    font-weight: 650;
+    color: #111827;
+    line-height: 1.35;
+}
+
+.wishlist-location {
+    margin: 0 0 15px;
+    color: #6b7280;
+    font-size: 0.98rem;
+}
+
+.wishlist-price {
+    margin: 0 0 20px;
+    color: #111827;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.wishlist-price span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #6b7280;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.wishlist-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border-top: 1px solid #eeeeee;
+    padding-top: 18px;
+}
+
+.wishlist-actions form {
+    margin: 0;
+}
+
+
+/* VIEW BUTTON */
+
+.wishlist-view-btn {
+    flex: 1;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ff385c;
+    color: #ffffff;
+
+    border-radius: 11px;
+    text-decoration: none;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+.wishlist-view-btn:hover {
+    background: #e03150;
+    color: #ffffff;
+}
+
+
+/* REMOVE BUTTON */
+
+.wishlist-remove-btn {
+    height: 44px;
+    padding: 0 18px;
+
+    background: #ffffff;
+    color: #ff385c;
+
+    border: 1px solid #ff385c;
+    border-radius: 11px;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.wishlist-remove-btn:hover {
+    background: #ff385c;
+    color: #ffffff;
+}
+
+/* ==============================
+   WISHLIST REMOVE BUTTON
+   ============================== */
+
+.remove-wishlist-form {
+    margin: 0;
+    padding: 0;
+}
+
+.remove-wishlist-btn {
+    height: 46px;
+    min-width: 120px;
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #ff385c;
+
+    border: 1px solid #ff385c;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.remove-wishlist-btn i {
+    font-size: 15px;
+}
+
+.remove-wishlist-btn:hover {
+    background: #ff385c;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(255, 56, 92, 0.18);
+}
+
+.remove-wishlist-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   EMPTY WISHLIST
+========================================================= */
+
+.empty-wishlist {
+    max-width: 500px;
+    margin: 20px auto 10px;
+
+    padding: 30px 60px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.empty-wishlist-icon {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f3;
+    border-radius: 50%;
+
+    font-size: 2rem;
+}
+
+.empty-wishlist h2 {
+    margin: 0 0 10px;
+
+    font-size: 1.5rem;
+    font-weight: 650;
+
+    color: #111827;
+}
+
+.empty-wishlist p {
+    margin: 0 auto 25px;
+
+    max-width: 360px;
+
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   EXPLORE BUTTON
+========================= */
+
+.wishlist-explore-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 190px;
+    height: 46px;
+
+    padding: 0 22px;
+
+    background: #ff385c;
+    color: #ffffff;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+.wishlist-explore-btn:hover {
+    background: #e03150;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .wishlist-page {
+        padding: 25px 16px 35px;
+    }
+
+    .wishlist-header {
+        margin-bottom: 25px;
+    }
+
+    .wishlist-header h1 {
+        font-size: 2rem;
+    }
+
+    .wishlist-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .wishlist-image {
+        height: 250px;
+    }
+
+    .wishlist-card-body {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .wishlist-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .wishlist-header p {
+        font-size: 0.95rem;
+    }
+
+    .wishlist-image {
+        height: 220px;
+    }
+
+    .wishlist-card-body h3 {
+        font-size: 1.2rem;
+    }
+
+    .wishlist-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .wishlist-view-btn,
+    .wishlist-remove-btn {
+        width: 100%;
+    }
+
+    .empty-wishlist {
+        margin-top: 10px;
+        padding: 40px 20px;
+    }
+
+}
+
+/* =========================================================
+   WISHLIST HEART BUTTON
+========================================================= */
+
+.wishlist-form {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    margin: 0;
+    z-index: 5;
+}
+
+.wishlist-btn {
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ff385c;
+
+    font-size: 1.45rem;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    transition: all 0.25s ease;
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.08);
+}
+
+.wishlist-btn.active {
+    color: #ff385c;
+}
+
+.wishlist-btn.active i {
+    animation: heartPop 0.25s ease;
+}
+
+@keyframes heartPop {
+    0% {
+        transform: scale(0.7);
+    }
+
+    70% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }

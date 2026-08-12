@@ -19,6 +19,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const bookingRoutes = require("./routes/bookings");
+const wishlistRouter = require("./routes/wishlist");
 
 // DB
 const dbUrl = process.env.DB_URL;
@@ -34,6 +35,11 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+
+app.use((req, res, next) => {
+    res.set("Cache-Control", "no-store");
+    next();
+});
 
 // SESSION (❌ removed MongoStore to avoid error)
 const sessionOptions = {
@@ -66,6 +72,7 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", bookingRoutes);
 app.use("/", userRouter);
+app.use("/", wishlistRouter);
 
 // ERROR
 app.use((req, res, next) => {
