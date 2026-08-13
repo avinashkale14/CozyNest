@@ -478,3 +478,83 @@ module.exports.cancelBooking = async (req, res) => {
         return res.redirect("/bookings");
     }
 };
+
+// =====================================================
+// DELETE CANCELLED BOOKING HISTORY
+// =====================================================
+
+module.exports.deleteBooking = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        // Find booking
+        const booking = await Booking.findById(id);
+
+        if (!booking) {
+
+            req.flash(
+                "error",
+                "Booking not found!"
+            );
+
+            return res.redirect("/bookings");
+        }
+
+
+        // Security check:
+        // Only booking owner can remove it
+        if (
+            booking.guest.toString() !==
+            req.user._id.toString()
+        ) {
+
+            req.flash(
+                "error",
+                "You are not allowed to remove this booking."
+            );
+
+            return res.redirect("/bookings");
+        }
+
+
+        // Only cancelled bookings can be removed
+        if (booking.status !== "Cancelled") {
+
+            req.flash(
+                "error",
+                "Only cancelled bookings can be removed."
+            );
+
+            return res.redirect("/bookings");
+        }
+
+
+        // Delete booking
+        await Booking.findByIdAndDelete(id);
+
+
+        req.flash(
+            "success",
+            "Cancelled booking removed from history."
+        );
+
+        return res.redirect("/bookings");
+
+
+    } catch (error) {
+
+        console.log(
+            "DELETE BOOKING ERROR:",
+            error
+        );
+
+        req.flash(
+            "error",
+            "Unable to remove booking history."
+        );
+
+        return res.redirect("/bookings");
+    }
+};

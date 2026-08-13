@@ -39,6 +39,16 @@ router.put(
     bookingsController.cancelBooking
 );
 
+// =====================================================
+// REMOVE CANCELLED BOOKING HISTORY
+// =====================================================
+
+router.delete(
+    "/bookings/:id",
+    isLoggedIn,
+    bookingsController.deleteBooking
+);
+
 
 // =====================================================
 // MY BOOKINGS

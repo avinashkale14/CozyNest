@@ -98,9 +98,15 @@ module.exports.renderProfile = async (req, res) => {
         guest: user._id
     });
 
+    // Count user's wishlist
+    const totalWishlist = user.wishlist
+        ? user.wishlist.length
+        : 0;
+
     res.render("users/profile", {
         user,
         totalListings,
-        totalBookings
+        totalBookings,
+        totalWishlist
     });
 };

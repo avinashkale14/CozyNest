@@ -1033,12 +1033,9 @@ display: flex;
         padding:22px;
     }
 
-    .back-btn{
-        position:static;
-        left:auto;
-        top:auto;
-        display:inline-block;
-        margin-bottom:18px;
+    .back-btn {
+        margin-bottom: 12px;
+        font-size: 0.9rem;
     }
 
     .booking-card h3{
@@ -2293,6 +2290,112 @@ display: flex;
     transform: translateY(-2px);
 }
 
+/* =========================================================
+   REMOVE CANCELLED BOOKING
+========================================================= */
+
+.my-booking-card {
+    position: relative;
+}
+
+
+/* Remove button container */
+
+.remove-booking-form {
+    position: absolute;
+
+    top: 18px;
+    right: 15px;
+
+    margin: 0;
+    padding: 0;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* X button */
+
+.remove-booking-btn {
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    /* Match Cancelled badge */
+    background: #fde2e2;
+    color: #dc3545;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+
+    transition: all 0.2s ease;
+}
+
+.remove-booking-btn:hover {
+    background: #dc3545;
+    color: #fff;
+
+    transform: scale(1.08);
+}
+
+/* =========================================================
+   CANCELLED STATUS + REMOVE BUTTON
+   Keep them on the same horizontal line
+========================================================= */
+
+.my-booking-card:has(.remove-booking-form)
+.my-booking-card-actions {
+    padding-top: 15px;
+}
+
+
+/* Move Cancelled badge slightly left
+   so X button gets proper space */
+
+.my-booking-card:has(.remove-booking-form)
+.status-badge.cancelled {
+    margin-right: 42px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .remove-booking-form {
+        top: 10px;
+        right: 10px;
+    }
+
+    .remove-booking-btn {
+        width: 30px;
+        height: 30px;
+
+        font-size: 14px;
+    }
+
+    .my-booking-card:has(.remove-booking-form)
+    .status-badge.cancelled {
+        margin-right: 38px;
+    }
+}
 
 /* =========================================================
    TABLET
