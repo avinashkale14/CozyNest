@@ -7,18 +7,61 @@ const Listing = require("../models/listing");
 const User = require("../models/user");
 
 
-// ================== INDEX ==================
+//INDEX
+
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+
+    const searchTerm = (req.query.search || "").trim();
+
+    let filter = {};
+
+
+    // SEARCH
+
+    if (searchTerm) {
+
+        // Escape special regex characters
+        const escapedSearch = searchTerm.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
+        const searchRegex = new RegExp(
+            escapedSearch,
+            "i"
+        );
+
+        filter = {
+            $or: [
+                { title: searchRegex },
+                { location: searchRegex },
+                { country: searchRegex }
+            ]
+        };
+
+    }
+
+
+    // GET LISTINGS
+
+    const allListings = await Listing.find(filter);
+
+
+    // RENDER
+
+    res.render("listings/index.ejs", {
+        allListings,
+        searchTerm
+    });
+
 };
 
-// ================== NEW FORM ==================
+// NEW FORM
 module.exports.renderNewForm = (req, res) => {
     res.render("listings/new.ejs");
 };
 
-// ================== SHOW ==================
+// SHOW
 
 module.exports.showListing = async (req, res) => {
 
@@ -59,7 +102,8 @@ module.exports.showListing = async (req, res) => {
     });
 
 };
-// ================== CREATE ==================
+
+// CREATE
 module.exports.createListing = async (req, res) => {
 
     const searchText = `${req.body.listing.location}, ${req.body.listing.country}`;
@@ -97,7 +141,8 @@ module.exports.createListing = async (req, res) => {
     req.flash("success", "New Listing Created!");
     return res.redirect("/listings");
 };
-// ================== EDIT FORM ==================
+
+// EDIT FORM
 module.exports.renderEditForm = async (req, res) => {
     const { id } = req.params;
 
@@ -114,7 +159,7 @@ module.exports.renderEditForm = async (req, res) => {
     res.render("listings/edit.ejs", { listing, originalImageUrl });
 };
 
-// ================== UPDATE ==================
+// UPDATE
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
 
@@ -151,20 +196,17 @@ module.exports.updateListing = async (req, res) => {
     return res.redirect(`/listings/${id}`);
 };
 
-// ================== DELETE ==================
+// DELETE
 module.exports.destroyListing = async (req, res) => {
     const { id } = req.params;
 
     await Listing.findByIdAndDelete(id);
 
     req.flash("success", "Listing Deleted!");
-    return res.redirect("/listings");  // ✅ RETURN
+    return res.redirect("/listings"); 
 };
 
-// ===============================
 // MY LISTINGS
-// ===============================
-
 module.exports.myListings = async (req, res) => {
 
     const listings = await Listing.find({

@@ -23,9 +23,7 @@ deleteForms.forEach((form) => {
 
 
 
-/* ===========================
-   Cancel Booking Confirmation
-=========================== */
+/* Cancel Booking Confirmation */
 
 const cancelForms = document.querySelectorAll(".cancel-booking-form");
 

@@ -1,6 +1,4 @@
-// =====================================================
 // BOOTSTRAP FORM VALIDATION
-// =====================================================
 
 (() => {
     'use strict';
@@ -25,9 +23,7 @@
 })();
 
 
-// =====================================================
 // WISHLIST TOGGLE
-// =====================================================
 
 document.querySelectorAll(".wishlist-form").forEach(form => {
 
@@ -88,9 +84,7 @@ document.querySelectorAll(".wishlist-form").forEach(form => {
 });
 
 
-// =====================================================
 // REMOVE FROM WISHLIST PAGE
-// =====================================================
 
 document.querySelectorAll(".remove-wishlist-form").forEach(form => {
 

@@ -5,6 +5,7 @@ const wishlistController = require("../controllers/wishlist");
 const { isLoggedIn } = require("../middleware");
 
 // Show wishlist
+
 router.get(
     "/wishlist",
     isLoggedIn,
@@ -12,6 +13,7 @@ router.get(
 );
 
 // Add / Remove toggle
+
 router.post(
     "/listings/:id/wishlist",
     isLoggedIn,
@@ -19,6 +21,7 @@ router.post(
 );
 
 // Remove from wishlist page
+
 router.delete(
     "/wishlist/:id",
     isLoggedIn,

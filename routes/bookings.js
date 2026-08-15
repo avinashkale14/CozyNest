@@ -7,9 +7,7 @@ const bookingsController = require("../controllers/bookings");
 const { isLoggedIn } = require("../middleware");
 
 
-// =====================================================
 // BOOKING CONFIRMATION PAGE
-// =====================================================
 
 router.get(
     "/listings/:id/book",
@@ -18,9 +16,7 @@ router.get(
 );
 
 
-// =====================================================
 // CREATE BOOKING
-// =====================================================
 
 router.post(
     "/bookings",
@@ -29,9 +25,7 @@ router.post(
 );
 
 
-// =====================================================
 // CANCEL BOOKING
-// =====================================================
 
 router.put(
     "/bookings/:id",
@@ -39,9 +33,7 @@ router.put(
     bookingsController.cancelBooking
 );
 
-// =====================================================
 // REMOVE CANCELLED BOOKING HISTORY
-// =====================================================
 
 router.delete(
     "/bookings/:id",
@@ -50,9 +42,7 @@ router.delete(
 );
 
 
-// =====================================================
 // MY BOOKINGS
-// =====================================================
 
 router.get(
     "/bookings",

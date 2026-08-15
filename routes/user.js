@@ -14,9 +14,7 @@ const {
 const userController = require("../controllers/users.js");
 
 
-// ===============================
 // SIGN UP
-// ===============================
 
 router.route("/signup")
 
@@ -27,9 +25,7 @@ router.route("/signup")
     );
 
 
-// ===============================
 // LOGIN
-// ===============================
 
 router.route("/login")
 
@@ -52,9 +48,7 @@ router.route("/login")
     );
 
 
-// ===============================
 // PROFILE
-// ===============================
 
 router.get(
     "/profile",
@@ -63,9 +57,7 @@ router.get(
 );
 
 
-// ===============================
 // LOGOUT
-// ===============================
 
 router.get(
     "/logout",

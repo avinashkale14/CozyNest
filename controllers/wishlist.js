@@ -1,9 +1,7 @@
 const User = require("../models/user");
 const Listing = require("../models/listing");
 
-// ===============================
 // SHOW WISHLIST
-// ===============================
 
 module.exports.showWishlist = async (req, res) => {
 
@@ -16,9 +14,7 @@ module.exports.showWishlist = async (req, res) => {
 };
 
 
-// ===============================
 // TOGGLE WISHLIST
-// ===============================
 
 module.exports.addToWishlist = async (req, res) => {
 
@@ -42,9 +38,7 @@ module.exports.addToWishlist = async (req, res) => {
         );
 
 
-        // =========================
         // REMOVE
-        // =========================
 
         if (index !== -1) {
 
@@ -59,9 +53,7 @@ module.exports.addToWishlist = async (req, res) => {
         }
 
 
-        // =========================
         // ADD
-        // =========================
 
         user.wishlist.push(listing._id);
 
@@ -85,9 +77,7 @@ module.exports.addToWishlist = async (req, res) => {
 };
 
 
-// ===============================
 // REMOVE FROM WISHLIST PAGE
-// ===============================
 
 module.exports.removeFromWishlist = async (req, res) => {
 

@@ -1,10 +1,7 @@
 const Booking = require("../models/booking");
 const Listing = require("../models/listing");
 
-
-// =====================================================
 // SHOW BOOKING CONFIRMATION PAGE
-// =====================================================
 
 module.exports.renderBookingForm = async (req, res) => {
 
@@ -42,11 +39,7 @@ module.exports.renderBookingForm = async (req, res) => {
     }
 };
 
-
-// =====================================================
 // CREATE BOOKING
-// =====================================================
-
 module.exports.createBooking = async (req, res) => {
 
     try {
@@ -57,11 +50,9 @@ module.exports.createBooking = async (req, res) => {
             checkOut,
             guests
         } = req.body;
-
-
-        // =================================================
+      
+        
         // BASIC VALIDATION
-        // =================================================
 
         if (!listingId || !checkIn || !checkOut || !guests) {
 
@@ -69,9 +60,7 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-        // =================================================
         // FIND LISTING
-        // =================================================
 
         const listing = await Listing.findById(listingId);
 
@@ -86,9 +75,7 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-        // =================================================
         // VALIDATE GUESTS
-        // =================================================
 
         const numberOfGuests = Number(guests);
 
@@ -112,10 +99,7 @@ module.exports.createBooking = async (req, res) => {
             });
         }
 
-
-        // =================================================
         // CONVERT DATES
-        // =================================================
 
         const startDate = new Date(
             `${checkIn}T00:00:00`
@@ -125,10 +109,7 @@ module.exports.createBooking = async (req, res) => {
             `${checkOut}T00:00:00`
         );
 
-
-        // =================================================
         // INVALID DATE
-        // =================================================
 
         if (
             Number.isNaN(startDate.getTime()) ||
@@ -152,18 +133,14 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-        // =================================================
         // TODAY DATE
-        // =================================================
 
         const today = new Date();
 
         today.setHours(0, 0, 0, 0);
 
 
-        // =================================================
         // PAST CHECK-IN
-        // =================================================
 
         if (startDate < today) {
 
@@ -184,9 +161,7 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-        // =================================================
-        // CHECK-OUT MUST BE AFTER CHECK-IN
-        // =================================================
+       // CHECK-OUT MUST BE AFTER CHECK-IN
 
         if (endDate <= startDate) {
 
@@ -207,9 +182,7 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-        // =================================================
-        // CALCULATE NIGHTS
-        // =================================================
+         // CALCULATE NIGHTS
 
         const timeDifference =
             endDate.getTime() - startDate.getTime();
@@ -221,9 +194,7 @@ module.exports.createBooking = async (req, res) => {
             );
 
 
-        // =================================================
         // CHECK OVERLAPPING BOOKINGS
-        // =================================================
 
         const existingBooking =
             await Booking.findOne({
@@ -262,9 +233,7 @@ module.exports.createBooking = async (req, res) => {
         }
 
 
-        // =================================================
         // CALCULATE TOTAL PRICE
-        // =================================================
 
         const totalPrice =
             listing.price *
@@ -272,9 +241,7 @@ module.exports.createBooking = async (req, res) => {
             numberOfGuests;
 
 
-        // =================================================
         // DEBUG LOG
-        // =================================================
 
         console.log("=================================");
         console.log("BOOKING DETAILS");
@@ -291,9 +258,7 @@ module.exports.createBooking = async (req, res) => {
         console.log("=================================");
 
 
-        // =================================================
         // CREATE BOOKING
-        // =================================================
 
         const booking = new Booking({
 
@@ -314,16 +279,12 @@ module.exports.createBooking = async (req, res) => {
         });
 
 
-        // =================================================
         // SAVE BOOKING
-        // =================================================
 
         await booking.save();
 
 
-        // =================================================
         // SUCCESS
-        // =================================================
 
         req.flash(
             "success",
@@ -347,9 +308,7 @@ module.exports.createBooking = async (req, res) => {
 };
 
 
-// =====================================================
 // MY BOOKINGS
-// =====================================================
 
 module.exports.myBookings = async (req, res) => {
 
@@ -385,9 +344,7 @@ module.exports.myBookings = async (req, res) => {
 };
 
 
-// =====================================================
 // CANCEL BOOKING
-// =====================================================
 
 module.exports.cancelBooking = async (req, res) => {
 
@@ -396,9 +353,7 @@ module.exports.cancelBooking = async (req, res) => {
         const { id } = req.params;
 
 
-        // =================================================
-        // FIND BOOKING
-        // =================================================
+         // FIND BOOKING
 
         const booking =
             await Booking.findById(id);
@@ -415,9 +370,7 @@ module.exports.cancelBooking = async (req, res) => {
         }
 
 
-        // =================================================
-        // SECURITY CHECK
-        // =================================================
+       // SECURITY CHECK
 
         if (
             booking.guest.toString() !==
@@ -432,10 +385,8 @@ module.exports.cancelBooking = async (req, res) => {
             return res.redirect("/bookings");
         }
 
-
-        // =================================================
+        
         // ALREADY CANCELLED
-        // =================================================
 
         if (booking.status === "Cancelled") {
 
@@ -448,9 +399,7 @@ module.exports.cancelBooking = async (req, res) => {
         }
 
 
-        // =================================================
         // CANCEL BOOKING
-        // =================================================
 
         booking.status = "Cancelled";
 
@@ -479,10 +428,8 @@ module.exports.cancelBooking = async (req, res) => {
     }
 };
 
-// =====================================================
-// DELETE CANCELLED BOOKING HISTORY
-// =====================================================
 
+// DELETE CANCELLED BOOKING HISTORY
 module.exports.deleteBooking = async (req, res) => {
 
     try {

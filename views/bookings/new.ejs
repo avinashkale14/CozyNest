@@ -2,19 +2,14 @@
 
 
 <%
-    // ===============================
     // BOOKING DATA
-    // ===============================
-
     const checkIn = query.checkIn;
     const checkOut = query.checkOut;
 
     const numberOfGuests = Number(query.guests) || 1;
 
 
-    // ===============================
     // CALCULATE NIGHTS
-    // ===============================
 
     const startDate = new Date(checkIn + "T00:00:00");
     const endDate = new Date(checkOut + "T00:00:00");
@@ -24,9 +19,7 @@
     );
 
 
-    // ===============================
     // CALCULATE TOTAL
-    // ===============================
 
     const totalPrice =
         listing.price *
@@ -34,9 +27,7 @@
         numberOfGuests;
 
 
-    // ===============================
     // FORMAT DATE
-    // ===============================
 
     const formatDate = (date) => {
 
@@ -65,9 +56,7 @@
     <!-- BOOKING CONTENT -->
     <div class="booking-layout">
 
-        <!-- ================================= -->
-        <!-- LEFT : LISTING CARD -->
-        <!-- ================================= -->
+        <!-- LEFT : LISTING CARD  -->
 
         <div class="booking-listing-card">
 
@@ -102,10 +91,7 @@
         </div>
 
 
-        <!-- ================================= -->
         <!-- RIGHT : BOOKING SUMMARY -->
-        <!-- ================================= -->
-
         <div class="booking-summary">
 
             <h2>

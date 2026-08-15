@@ -80,10 +80,7 @@ module.exports.logout = (req, res, next) => {
     });
 };
 
-// ===============================
 // SHOW USER PROFILE
-// ===============================
-
 module.exports.renderProfile = async (req, res) => {
 
     const user = req.user;
