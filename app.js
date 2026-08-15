@@ -74,6 +74,11 @@ app.use("/", bookingRoutes);
 app.use("/", userRouter);
 app.use("/", wishlistRouter);
 
+// HOME
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 // ERROR
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
