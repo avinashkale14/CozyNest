@@ -1071,19 +1071,25 @@ font-size:19px;
 /* AUTH PAGES */
 
 .auth-container{
-display:flex;
-justify-content:center;
-padding:30px 20px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 20px 0;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .auth-card{
-width:100%;
-max-width:500px;
-background:#fff;
-border-radius:20px;
-padding:20px;
-border:1px solid #ececec;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #ececec;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    box-sizing: border-box;
 }
 
 .auth-card h1{
@@ -5246,6 +5252,31 @@ textarea {
     .wishlist-remove-btn,
     .remove-wishlist-btn {
         width: 100%;
+    }
+
+        /* AUTH MOBILE CENTER FIX */
+
+
+    .auth-container{
+        width: 100%;
+        padding: 20px 12px 24px !important;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+
+    .auth-card{
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto !important;
+        padding: 20px 16px !important;
+    }
+
+
+    .auth-card h1{
+        font-size: 1.5rem;
     }
 
     .profile-card {
