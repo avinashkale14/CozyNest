@@ -939,6 +939,34 @@ border-radius: 10px;
 padding: 10px 12px;
 }
 
+/* MOBILE DATE PLACEHOLDER ONLY
+   Does NOT change layout or date functionality */
+
+@media (max-width: 768px) {
+
+    .booking-card .row:first-child > .col-6 {
+        position: relative;
+    }
+
+    .booking-card .row:first-child > .col-6:has(
+        input[type="date"]:invalid
+    )::after {
+        content: "dd/mm/yyyy";
+
+        position: absolute;
+        left: 20px;
+        top: 40px;
+
+        color: #6c757d;
+        font-size: 15px;
+        line-height: 1;
+
+        pointer-events: none;
+        z-index: 2;
+    }
+
+}
+
 .reserve-btn{
 display: flex;
 align-items: center;
