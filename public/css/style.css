@@ -5493,47 +5493,44 @@ textarea {
 }
 
 
-/* FIX: SHOW PAGE BOOKING ON MOBILE */
+/* DATE INPUT PLACEHOLDER FIX */
+.date-field {
+    position: relative;
+}
 
-@media (max-width: 992px) {
+.date-field .date-placeholder {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
 
-    .show-layout {
-        display: flex !important;
-        flex-direction: column !important;
-        width: calc(100% - 20px) !important;
-        max-width: 1200px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        gap: 18px !important;
+/* Keep native calendar icon clickable */
+.date-field input[type="date"] {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+}
+
+/* Hide our placeholder when date is selected */
+.date-field input[type="date"]:valid {
+    background: #fff;
+}
+
+.date-field input[type="date"]:valid + .date-placeholder {
+    display: none;
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+
+    .date-field .date-placeholder {
+        font-size: 0.95rem;
+        left: 12px;
     }
 
-    .left-section,
-    .right-section {
-        width: 100% !important;
-        max-width: 100% !important;
-        flex: 0 0 100% !important;
-    }
-
-    .right-section {
-        display: flex !important;
-        flex-direction: column !important;
-        margin-top: 0 !important;
-        gap: 18px !important;
-    }
-
-    .booking-card {
-        display: block !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    .map-card {
-        display: block !important;
-        width: 100% !important;
-    }
-
-    #map {
-        width: 100% !important;
-    }
 }
