@@ -14,7 +14,7 @@ https://cozynest-ue9b.onrender.com
 ## 📸 Project Preview
 
 ### 🏠 Listings Page
-(screenshots/listings.png)
+![CozyNest Listings](screenshots/listings.png)
 
 ### 🏡 Listing Details
 ![Listing Details](screenshots/listing-details.png)
