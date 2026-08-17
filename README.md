@@ -11,8 +11,25 @@ The project was built to practice and demonstrate full-stack web development usi
 🔗 **Live Website:**  
 https://cozynest-ue9b.onrender.com
 
-🔗 **GitHub Repository:**  
-https://github.com/avinashkale14/CozyNest
+## 📸 Project Preview
+
+### 🏠 Listings Page
+![CozyNest Listings](screenshots/listings.png)
+
+### 🏡 Listing Details
+![Listing Details](screenshots/listing-details.png)
+
+### 🔐 Login Page
+![Login](screenshots/login.png)
+
+### 📅 Booking
+![Booking](screenshots/booking.png)
+
+### ❤️ Wishlist
+![Wishlist](screenshots/wishlist.png)
+
+### 📱 Mobile Responsive
+![Mobile Responsive](screenshots/mobile.png)
 
 ---
 
@@ -351,9 +368,7 @@ Possible future improvements:
 ## 👨‍💻 Developer
 
 ### Avinash Kale
-
 **Bachelor of Computer Science**
-
 GitHub:  
 https://github.com/avinashkale14
 
