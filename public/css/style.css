@@ -1049,6 +1049,28 @@ width:100%;
 padding:22px;
 }
 
+/* MOBILE/TABLET BOOKING ROW */
+
+.booking-card .row.align-items-end.mt-2 {
+display: flex;
+flex-wrap: nowrap;
+gap: 10px;
+}
+
+.booking-card .row.align-items-end.mt-2 .col-3 {
+width: 38%;
+flex: 0 0 38%;
+}
+
+.booking-card .row.align-items-end.mt-2 .col-9 {
+width: 62%;
+flex: 0 0 62%;
+}
+
+.booking-card .row.align-items-end.mt-2 .form-select {
+    width: 100%;
+}
+
 .back-btn {
 margin-bottom: 12px;
 font-size: 0.9rem;
