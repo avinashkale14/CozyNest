@@ -5494,6 +5494,7 @@ textarea {
 
 
 /* DATE INPUT PLACEHOLDER FIX */
+
 .date-field {
     position: relative;
 }
@@ -5506,31 +5507,40 @@ textarea {
     color: #6c757d;
     font-size: 1rem;
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
 }
 
-/* Keep native calendar icon clickable */
-.date-field input[type="date"] {
-    position: relative;
-    z-index: 2;
-    background: transparent;
+
+/* Hide browser's own mm/dd/yyyy text
+   but KEEP the calendar icon */
+
+.date-field input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
 }
 
-/* Hide our placeholder when date is selected */
-.date-field input[type="date"]:valid {
-    background: #fff;
+
+/* When a real date is selected,
+   show the actual date */
+
+.date-field input[type="date"]:valid::-webkit-datetime-edit {
+    color: #212529;
 }
 
-.date-field input[type="date"]:valid + .date-placeholder {
-    display: none;
+
+/* Keep calendar icon visible and clickable */
+
+.date-field input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    cursor: pointer;
 }
 
-/* Mobile only */
+
+/* Mobile */
+
 @media (max-width: 768px) {
 
     .date-field .date-placeholder {
-        font-size: 0.95rem;
-        left: 12px;
+        font-size: 0.9rem;
     }
 
 }
