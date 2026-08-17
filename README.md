@@ -238,7 +238,7 @@ Search / Category Filter
   ↓
 View Listing
   ↓
- ┌───────────────┬───────────────┬───────────────┐
+ ┌───────────────┬───────────────┐
  ↓               ↓               ↓
 Wishlist        Booking         Review
  ↓               ↓               ↓
