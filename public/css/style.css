@@ -1079,14 +1079,14 @@ display: flex;
 flex-wrap: nowrap;
 }
 
-.booking-card .row.align-items-end.mt-1 .col-3 {
-width: 38%;
-flex: 0 0 38%;
+.booking-card .row.align-items-end.mt-2 .col-3 {
+width: 30%;
+flex: 0 0 30%;
 }
 
-.booking-card .row.align-items-end.mt-2 .col-10 {
-width: 62%;
-flex: 0 0 62%;
+.booking-card .row.align-items-end.mt-2 .col-9 {
+width: 70%;
+flex: 0 0 70%;
 }
 
 .booking-card .row.align-items-end.mt-2 .form-select {
