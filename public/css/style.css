@@ -5491,3 +5491,49 @@ textarea {
         width: calc(100% - 16px);
     }
 }
+
+
+/* FIX: SHOW PAGE BOOKING ON MOBILE */
+
+@media (max-width: 992px) {
+
+    .show-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        width: calc(100% - 20px) !important;
+        max-width: 1200px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        gap: 18px !important;
+    }
+
+    .left-section,
+    .right-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+
+    .right-section {
+        display: flex !important;
+        flex-direction: column !important;
+        margin-top: 0 !important;
+        gap: 18px !important;
+    }
+
+    .booking-card {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .map-card {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    #map {
+        width: 100% !important;
+    }
+}
