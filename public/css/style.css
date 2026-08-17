@@ -1079,12 +1079,12 @@ display: flex;
 flex-wrap: nowrap;
 }
 
-.booking-card .row.align-items-end.mt-2 .col-3 {
+.booking-card .row.align-items-end.mt-1 .col-3 {
 width: 38%;
 flex: 0 0 38%;
 }
 
-.booking-card .row.align-items-end.mt-2 .col-9 {
+.booking-card .row.align-items-end.mt-2 .col-8 {
 width: 62%;
 flex: 0 0 62%;
 }
