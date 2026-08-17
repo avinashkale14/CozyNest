@@ -11,26 +11,6 @@ The project was built to practice and demonstrate full-stack web development usi
 🔗 **Live Website:**  
 https://cozynest-ue9b.onrender.com
 
-## 📸 Project Preview
-
-### 🏠 Listings Page
-![Cozynest Listings](https://github.com/avinashkale14/CozyNest/blob/main/screenshots/listings.png?raw=true)
-
-### 🏡 Listing Details
-![Listing Details](screenshots/listing-details.png)
-
-### 🔐 Login Page
-![Login](screenshots/login.png)
-
-### 📅 Booking
-![Booking](screenshots/booking.png)
-
-### ❤️ Wishlist
-![Wishlist](screenshots/wishlist.png)
-
-### 📱 Mobile Responsive
-![Mobile Responsive](screenshots/mobile.png)
-
 ---
 
 ## ✨ Features
