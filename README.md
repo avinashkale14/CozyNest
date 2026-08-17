@@ -9,7 +9,7 @@ The project was built to practice and demonstrate full-stack web development usi
 ## 🌐 Live Demo
 
 🔗 **Live Website:**  
-https://cozynest-ue9b.onrender.com/listings
+https://cozynest-ue9b.onrender.com
 
 🔗 **GitHub Repository:**  
 https://github.com/avinashkale14/CozyNest
