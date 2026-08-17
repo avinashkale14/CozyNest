@@ -939,8 +939,9 @@ border-radius: 10px;
 padding: 10px 12px;
 }
 
-/* MOBILE DATE PLACEHOLDER ONLY
-   Does NOT change layout or date functionality */
+/* =========================================================
+   MOBILE DATE PLACEHOLDER
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -948,9 +949,31 @@ padding: 10px 12px;
         position: relative;
     }
 
+    /* Hide browser's native date text while empty */
+    .booking-card .row:first-child input[type="date"]:invalid {
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .booking-card .row:first-child input[type="date"]:invalid::-webkit-datetime-edit {
+        color: transparent;
+    }
+
+    /* Show date text only when selected */
+    .booking-card .row:first-child input[type="date"]:valid {
+        color: #212529;
+        -webkit-text-fill-color: #212529;
+    }
+
+    .booking-card .row:first-child input[type="date"]:valid::-webkit-datetime-edit {
+        color: #212529;
+    }
+
+    /* Our mobile placeholder */
     .booking-card .row:first-child > .col-6:has(
         input[type="date"]:invalid
     )::after {
+
         content: "dd/mm/yyyy";
 
         position: absolute;
