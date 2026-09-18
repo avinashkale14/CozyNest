@@ -199,8 +199,6 @@ CLOUD_API_SECRET=your_cloudinary_api_secret
 MAPTILER_KEY=your_maptiler_api_key
 ```
 
-> Never commit your `.env` file to GitHub. Keep database credentials, API keys, and secrets private.
-
 ### 5. Start the application
 
 ```bash
