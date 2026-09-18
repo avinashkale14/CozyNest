@@ -8,8 +8,7 @@ The project was built to practice and demonstrate full-stack web development usi
 
 ## 🌐 Live Demo
 
-🔗 **Live Website:**  
-https://cozynest-ue9b.onrender.com
+🔗 https://cozynest-ue9b.onrender.com
 
 ---
 
@@ -307,44 +306,6 @@ The production application uses environment variables for:
 
 ---
 
-## 🎯 Key Learning Outcomes
-
-Through CozyNest, I gained practical experience in:
-
-- Building a full-stack MVC web application
-- Express.js routing and middleware
-- CRUD operations
-- MongoDB database management with Mongoose
-- Authentication with Passport.js
-- Authorization and protected routes
-- Session management
-- Image upload and cloud storage
-- Interactive maps and geocoding
-- Booking workflows
-- Wishlist functionality
-- Reviews and ratings
-- Responsive UI design
-- Git and GitHub
-- Deployment with Render
-
----
-
-## 🚀 Future Improvements
-
-Possible future improvements:
-
-- Online payment integration
-- Advanced search and sorting
-- Property availability calendar
-- Booking conflict prevention
-- Email notifications
-- Admin dashboard
-- User profile image upload
-- Advanced property filtering
-- Improved booking management
-
----
-
 ## 👨‍💻 Developer
 
 ### Avinash Kale
@@ -357,4 +318,4 @@ https://github.com/avinashkale14
 
 ## 📄 License
 
-This project was developed for educational, portfolio, and learning purposes.
+This project was developed for **educational, portfolio, and learning purposes**.
