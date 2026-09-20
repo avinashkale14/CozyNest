@@ -309,8 +309,7 @@ The production application uses environment variables for:
 ### Avinash Kale
 **Bachelor of Computer Science**
 
-GitHub:  
-https://github.com/avinashkale14
+GitHub:https://github.com/avinashkale14
 
 ---
 
